@@ -1,0 +1,2749 @@
+/* Global CSS from app.py */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200');
+
+/* Global Base - Exclude span/icons from global font-family override */
+html,
+body,
+[data-testid="stAppViewContainer"],
+.stApp,
+p,
+div,
+button,
+input,
+select,
+textarea {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
+}
+
+/* Explicitly preserve Material Symbols font family for standalone icons and expander toggle */
+[data-testid="stIconMaterial"],
+.material-symbols-rounded,
+.material-symbols-outlined,
+details summary > span > span:first-child span {
+    font-family: 'Material Symbols Rounded', 'Material Symbols Outlined' !important;
+    font-weight: normal !important;
+    font-style: normal !important;
+    font-size: 20px !important;
+    line-height: 1 !important;
+    letter-spacing: normal !important;
+    text-transform: none !important;
+    display: inline-block !important;
+    white-space: nowrap !important;
+    word-wrap: normal !important;
+    direction: ltr !important;
+    -webkit-font-smoothing: antialiased !important;
+    text-rendering: optimizeLegibility !important;
+    font-feature-settings: 'liga' 1 !important;
+}
+
+details summary {
+    cursor: pointer !important;
+}
+
+details summary > span {
+    display: flex !important;
+    align-items: center !important;
+    gap: 8px !important;
+}
+
+details summary div[class*="e1wbovuq3"] p,
+details summary p {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
+    font-size: 0.95rem !important;
+    font-weight: 600 !important;
+    color: #0f172a !important;
+    margin: 0 !important;
+    text-transform: none !important;
+    letter-spacing: normal !important;
+}
+
+.stApp {
+    background-color: #ffffff;
+    color: #334155;
+}
+
+/* Header Breadcrumb */
+.breadcrumb {
+    font-size: 0.75rem;
+    color: #94a3b8;
+}
+
+.breadcrumb span {
+    color: #0f172a;
+    font-weight: 600;
+}
+
+/* Custom Metric Cards */
+.metric-card {
+    background-color: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 16px 18px;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    min-height: 142px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-sizing: border-box;
+}
+
+.metric-title {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: #94a3b8;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+}
+
+.metric-value {
+    font-size: 2.25rem;
+    font-weight: 800;
+    color: #020617;
+    margin-top: 4px;
+}
+
+/* Sidebar styling overrides */
+[data-testid="stSidebar"] {
+    background-color: #f8fafc !important;
+    border-right: 1px solid #e2e8f0 !important;
+}
+
+[data-testid="stSidebarHeader"] {
+    display: none !important;
+    height: 0px !important;
+    padding: 0px !important;
+}
+
+[data-testid="stSidebarUserContent"] {
+    padding-top: 1.25rem !important;
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+}
+
+[data-testid="stSidebarUserContent"]>div:first-child {
+    margin-top: 0 !important;
+    padding-top: 0 !important;
+}
+
+.sidebar-brand-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 0 !important;
+    margin-bottom: 1.5rem !important;
+}
+
+.sidebar-brand-title {
+    font-size: 1.15rem !important;
+    font-weight: 700 !important;
+    color: #0f172a !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    line-height: 1 !important;
+    letter-spacing: -0.025em;
+}
+
+/* Sidebar Navigation overrides to look like prototype links */
+[data-testid="stSidebar"] div[role="radiogroup"]>div {
+    gap: 6px !important;
+}
+
+[data-testid="stSidebar"] div[role="radiogroup"] label {
+    background-color: transparent !important;
+    border: 1px solid transparent !important;
+    border-radius: 6px !important;
+    padding: 8px 12px !important;
+    transition: all 0.15s ease !important;
+    cursor: pointer !important;
+    width: 100% !important;
+    display: flex !important;
+    align-items: center !important;
+    margin-bottom: 2px !important;
+}
+
+[data-testid="stSidebar"] div[role="radiogroup"] label:hover {
+    background-color: #f1f5f9 !important;
+}
+
+[data-testid="stSidebar"] div[role="radiogroup"] label:hover p {
+    color: #0f172a !important;
+}
+
+[data-testid="stSidebar"] div[role="radiogroup"] label:hover [data-testid="stIconMaterial"] {
+    color: #334155 !important;
+}
+
+/* Hide the circular radio selectors using nested div traversal */
+[data-testid="stSidebar"] div[role="radiogroup"] label>div>div>div:first-child {
+    display: none !important;
+}
+
+/* Style the checked navigation item (white bg, slate-200 border, shadow-sm) */
+[data-testid="stSidebar"] div[role="radiogroup"] label:has(input:checked) {
+    background-color: #ffffff !important;
+    border: 1px solid #e2e8f0 !important;
+    color: #0f172a !important;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05) !important;
+}
+
+/* Sidebar navigation item content & typography */
+[data-testid="stSidebar"] div[role="radiogroup"] label [data-testid="stMarkdownContainer"] {
+    width: 100% !important;
+}
+
+[data-testid="stSidebar"] div[role="radiogroup"] label [data-testid="stMarkdownContainer"] p {
+    display: flex !important;
+    align-items: center !important;
+    gap: 12px !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    font-size: 0.875rem !important;
+    font-weight: 500 !important;
+    color: #475569 !important;
+    line-height: 1.25rem !important;
+    transition: color 0.15s ease !important;
+}
+
+[data-testid="stSidebar"] div[role="radiogroup"] label:has(input:checked) [data-testid="stMarkdownContainer"] p {
+    color: #0f172a !important;
+    font-weight: 600 !important;
+}
+
+/* Base style for clean 20px x 20px SVG vector icon on every navigation tab */
+[data-testid="stSidebar"] div[role="radiogroup"] label [data-testid="stMarkdownContainer"] p::before {
+    content: "" !important;
+    display: inline-block !important;
+    width: 20px !important;
+    height: 20px !important;
+    min-width: 20px !important;
+    min-height: 20px !important;
+    flex-shrink: 0 !important;
+    background-color: #64748b !important;
+    transition: background-color 0.15s ease !important;
+}
+
+/* Hover and active color states for the SVG icons */
+[data-testid="stSidebar"] div[role="radiogroup"] label:hover [data-testid="stMarkdownContainer"] p::before {
+    background-color: #0f172a !important;
+}
+
+[data-testid="stSidebar"] div[role="radiogroup"] label:has(input:checked) [data-testid="stMarkdownContainer"] p::before {
+    background-color: #0f172a !important;
+}
+
+/* 1. Master Resume: Lucide file-text SVG */
+[data-testid="stSidebar"] div[role="radiogroup"] label:nth-of-type(1) [data-testid="stMarkdownContainer"] p::before {
+    -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z'/%3E%3Cpath d='M14 2v4a2 2 0 0 0 2 2h4'/%3E%3Cpath d='M10 9H8'/%3E%3Cpath d='M16 13H8'/%3E%3Cpath d='M16 17H8'/%3E%3C/svg%3E") no-repeat center / contain !important;
+    mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z'/%3E%3Cpath d='M14 2v4a2 2 0 0 0 2 2h4'/%3E%3Cpath d='M10 9H8'/%3E%3Cpath d='M16 13H8'/%3E%3Cpath d='M16 17H8'/%3E%3C/svg%3E") no-repeat center / contain !important;
+}
+
+/* 2. Add Job & Tailor: Lucide sparkles SVG */
+[data-testid="stSidebar"] div[role="radiogroup"] label:nth-of-type(2) [data-testid="stMarkdownContainer"] p::before {
+    -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z'/%3E%3Cpath d='M5 3v4'/%3E%3Cpath d='M19 17v4'/%3E%3Cpath d='M3 5h4'/%3E%3Cpath d='M17 19h4'/%3E%3C/svg%3E") no-repeat center / contain !important;
+    mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z'/%3E%3Cpath d='M5 3v4'/%3E%3Cpath d='M19 17v4'/%3E%3Cpath d='M3 5h4'/%3E%3Cpath d='M17 19h4'/%3E%3C/svg%3E") no-repeat center / contain !important;
+}
+
+/* 3. Application Tracker: Lucide briefcase SVG */
+[data-testid="stSidebar"] div[role="radiogroup"] label:nth-of-type(3) [data-testid="stMarkdownContainer"] p::before {
+    -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect width='20' height='14' x='2' y='7' rx='2' ry='2'/%3E%3Cpath d='M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16'/%3E%3C/svg%3E") no-repeat center / contain !important;
+    mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect width='20' height='14' x='2' y='7' rx='2' ry='2'/%3E%3Cpath d='M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16'/%3E%3C/svg%3E") no-repeat center / contain !important;
+}
+
+/* 4. Dashboard: Lucide layout-dashboard SVG */
+[data-testid="stSidebar"] div[role="radiogroup"] label:nth-of-type(4) [data-testid="stMarkdownContainer"] p::before {
+    -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect width='7' height='9' x='3' y='3' rx='1'/%3E%3Crect width='7' height='5' x='14' y='3' rx='1'/%3E%3Crect width='7' height='9' x='14' y='12' rx='1'/%3E%3Crect width='7' height='5' x='3' y='16' rx='1'/%3E%3C/svg%3E") no-repeat center / contain !important;
+    mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect width='7' height='9' x='3' y='3' rx='1'/%3E%3Crect width='7' height='5' x='14' y='3' rx='1'/%3E%3Crect width='7' height='9' x='14' y='12' rx='1'/%3E%3Crect width='7' height='5' x='3' y='16' rx='1'/%3E%3C/svg%3E") no-repeat center / contain !important;
+}
+
+/* Ensure any residual Material icon span is hidden */
+[data-testid="stSidebar"] div[role="radiogroup"] [data-testid="stIconMaterial"] {
+    display: none !important;
+}
+
+/* Style all primary buttons (including inside @st.dialog portals) to match prototype dark slate (slate-900) */
+html body [data-testid="stAppViewContainer"] button[data-testid="stBaseButton-primary"],
+html body [data-testid="stAppViewContainer"] div[data-testid="stBaseButton-primary"] button,
+html body [data-testid="stAppViewContainer"] .stButton>button[kind="primary"],
+html body [data-testid="stAppViewContainer"] button[data-testid="stFormSubmitButton"],
+html body [data-testid="stDialog"] button[data-testid="stBaseButton-primary"],
+html body [data-testid="stDialog"] div[data-testid="stBaseButton-primary"] button,
+html body [data-testid="stDialog"] .stButton>button[kind="primary"] {
+    background-color: #0f172a !important;
+    color: #ffffff !important;
+    border-color: #0f172a !important;
+    border-radius: 8px !important;
+    font-weight: 600 !important;
+    transition: all 0.15s ease !important;
+}
+
+html body [data-testid="stAppViewContainer"] button[data-testid="stBaseButton-primary"]:hover,
+html body [data-testid="stAppViewContainer"] div[data-testid="stBaseButton-primary"] button:hover,
+html body [data-testid="stAppViewContainer"] .stButton>button[kind="primary"]:hover,
+html body [data-testid="stAppViewContainer"] button[data-testid="stFormSubmitButton"]:hover,
+html body [data-testid="stDialog"] button[data-testid="stBaseButton-primary"]:hover,
+html body [data-testid="stDialog"] div[data-testid="stBaseButton-primary"] button:hover,
+html body [data-testid="stDialog"] .stButton>button[kind="primary"]:hover {
+    background-color: #020617 !important;
+    border-color: #020617 !important;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1) !important;
+}
+
+/* Style all secondary/default buttons (including inside @st.dialog portals) */
+html body [data-testid="stAppViewContainer"] button[data-testid="stBaseButton-secondary"],
+html body [data-testid="stAppViewContainer"] div[data-testid="stBaseButton-secondary"] button,
+html body [data-testid="stAppViewContainer"] .stButton>button[kind="secondary"],
+html body [data-testid="stDialog"] button[data-testid="stBaseButton-secondary"],
+html body [data-testid="stDialog"] div[data-testid="stBaseButton-secondary"] button,
+html body [data-testid="stDialog"] .stButton>button[kind="secondary"] {
+    border-radius: 8px !important;
+    font-weight: 500 !important;
+    border: 1px solid #e2e8f0 !important;
+    color: #475569 !important;
+    background-color: #ffffff !important;
+    transition: all 0.15s ease !important;
+    box-shadow: none !important;
+}
+
+html body [data-testid="stAppViewContainer"] button[data-testid="stBaseButton-secondary"]:hover,
+html body [data-testid="stAppViewContainer"] div[data-testid="stBaseButton-secondary"] button:hover,
+html body [data-testid="stAppViewContainer"] .stButton>button[kind="secondary"]:hover,
+html body [data-testid="stDialog"] button[data-testid="stBaseButton-secondary"]:hover,
+html body [data-testid="stDialog"] div[data-testid="stBaseButton-secondary"] button:hover,
+html body [data-testid="stDialog"] .stButton>button[kind="secondary"]:hover {
+    background-color: #f8fafc !important;
+    border-color: #cbd5e1 !important;
+    color: #0f172a !important;
+}
+
+/* --- Master Resume View: <div class="space-y-6 max-w-4xl" id="view-master-resume"> --- */
+/* The main containers below header do not stretch the same as the header (constrained to max-w-4xl = 896px) */
+
+.st-key-view_master_resume,
+div[class*="st-key-view_master_resume"],
+div[data-testid="stElementContainer"]:has(.st-key-view_master_resume) {
+    max-width: 896px !important;
+    width: 100% !important;
+    margin-left: 0 !important;
+    margin-right: auto !important;
+    box-sizing: border-box !important;
+}
+
+/* Enforce 24px vertical space between children (matching Tailwind space-y-6) */
+.st-key-view_master_resume {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 24px !important;
+}
+
+/* Ensure all child blocks inside view_master_resume adhere strictly to max-w-4xl (896px) */
+.st-key-view_master_resume > div,
+.st-key-view_master_resume [data-testid="stElementContainer"],
+.st-key-view_master_resume [data-testid="stVerticalBlockBorderWrapper"],
+.st-key-view_master_resume [data-testid="stHorizontalBlock"] {
+    max-width: 896px !important;
+    width: 100% !important;
+    margin-left: 0 !important;
+    margin-right: auto !important;
+    box-sizing: border-box !important;
+}
+
+/* Compact Expand/Collapse All toggle bar above Header and Contact Details */
+.st-key-master_expand_toggle_row {
+    display: flex !important;
+    flex-direction: row !important;
+    justify-content: flex-end !important;
+    align-items: center !important;
+    margin-bottom: -14px !important;
+}
+
+.st-key-master_expand_toggle_row > div,
+.st-key-view_master_resume div[data-testid="stElementContainer"].st-key-btn_toggle_master_expanders,
+.st-key-btn_toggle_master_expanders {
+    width: auto !important;
+    max-width: fit-content !important;
+    margin-left: auto !important;
+    margin-right: 0 !important;
+}
+
+.st-key-btn_toggle_master_expanders button {
+    font-size: 12px !important;
+    font-weight: 600 !important;
+    padding: 4px 12px !important;
+    min-height: 30px !important;
+    height: 30px !important;
+    border-radius: 6px !important;
+    color: #475569 !important;
+    border: 1px solid #cbd5e1 !important;
+    background-color: #f8fafc !important;
+}
+
+.st-key-btn_toggle_master_expanders button:hover {
+    background-color: #f1f5f9 !important;
+    color: #0f172a !important;
+    border-color: #94a3b8 !important;
+}
+
+/* 1. File Information Header Card (#master-info-card) */
+div[data-testid="stElementContainer"]:has(#master-info-card),
+.element-container:has(#master-info-card) {
+    max-width: 896px !important;
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+#master-info-card {
+    background-color: #ffffff !important;
+    border: 1px solid #e2e8f0 !important;
+    border-radius: 12px !important;
+    padding: 16px !important;
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    gap: 16px !important;
+    box-sizing: border-box !important;
+    max-width: 896px !important;
+    width: 100% !important;
+    margin: 0 !important;
+}
+
+/* 2. Markdown Editor Container Box (#markdown-editor-container) */
+.st-key-markdown_editor_container,
+div[class*="st-key-markdown_editor_container"],
+div[data-testid="stElementContainer"]:has(.st-key-markdown_editor_container),
+div[data-testid="stVerticalBlockBorderWrapper"]:has(.editor-window-header) {
+    max-width: 896px !important;
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    box-sizing: border-box !important;
+}
+
+div[data-testid="stVerticalBlockBorderWrapper"]:has(.editor-window-header),
+.st-key-markdown_editor_container [data-testid="stVerticalBlockBorderWrapper"] {
+    background-color: #ffffff !important;
+    border: 1px solid #e2e8f0 !important;
+    border-radius: 12px !important;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05) !important;
+    padding: 0 !important;
+    overflow: hidden !important;
+    margin: 0 !important;
+    box-sizing: border-box !important;
+}
+
+.editor-window-header {
+    background-color: #fbfbfb !important;
+    border-bottom: 1px solid #e2e8f0 !important;
+    padding: 10px 16px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    border-top-left-radius: 11px !important;
+    border-top-right-radius: 11px !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+}
+
+.editor-header-left {
+    display: flex !important;
+    align-items: center !important;
+    gap: 8px !important;
+}
+
+.editor-dot {
+    width: 10px !important;
+    height: 10px !important;
+    border-radius: 50% !important;
+    background-color: #cbd5e1 !important;
+    display: inline-block !important;
+}
+
+.editor-mode-text {
+    font-size: 12px !important;
+    font-weight: 500 !important;
+    color: #64748b !important;
+    margin-left: 8px !important;
+}
+
+.editor-chars-count {
+    font-size: 12px !important;
+    color: #94a3b8 !important;
+}
+
+div[data-testid="stVerticalBlockBorderWrapper"]:has(.editor-window-header) div[data-testid="stTextArea"],
+.st-key-markdown_editor_container div[data-testid="stTextArea"] {
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+div[data-testid="stVerticalBlockBorderWrapper"]:has(.editor-window-header) div[data-baseweb="textarea"],
+.st-key-markdown_editor_container div[data-baseweb="textarea"] {
+    border: none !important;
+    background-color: transparent !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+div[data-testid="stVerticalBlockBorderWrapper"]:has(.editor-window-header) textarea,
+.st-key-markdown_editor_container textarea,
+div[data-testid="stTextArea"]:has(textarea[aria-label="Master Resume Content"]) textarea {
+    border: none !important;
+    outline: none !important;
+    box-shadow: none !important;
+    padding: 20px !important; /* Tailwind p-5 = 1.25rem = 20px */
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace !important;
+    font-size: 14px !important;
+    color: #1e293b !important;
+    line-height: 1.625 !important;
+    background-color: #ffffff !important;
+    min-height: 500px !important;
+    resize: vertical !important;
+    box-sizing: border-box !important;
+}
+
+/* 3. Master Bottom Actions (#master-bottom-actions) */
+.st-key-master_bottom_actions,
+div[class*="st-key-master_bottom_actions"],
+div[data-testid="stElementContainer"]:has(.st-key-master_bottom_actions) {
+    max-width: 896px !important;
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    box-sizing: border-box !important;
+}
+
+.st-key-master_bottom_actions [data-testid="stHorizontalBlock"],
+div[class*="st-key-master_bottom_actions"] {
+    display: flex !important;
+    flex-direction: row !important;
+    justify-content: flex-end !important;
+    align-items: center !important;
+    gap: 12px !important; /* gap-3 = 12px */
+    width: 100% !important;
+    margin-left: 0 !important;
+    margin-right: auto !important;
+}
+
+/* Reset Template button styling */
+button[key="btn_master_discard"],
+.st-key-master_bottom_actions button[data-testid="stBaseButton-secondary"] {
+    padding: 8px 16px !important;
+    border: 1px solid #e2e8f0 !important;
+    color: #475569 !important;
+    background-color: #ffffff !important;
+    border-radius: 8px !important;
+    font-size: 12px !important;
+    font-weight: 500 !important;
+    transition: all 0.15s ease !important;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05) !important;
+    min-height: 36px !important;
+    height: 36px !important;
+    width: auto !important;
+}
+
+button[key="btn_master_discard"]:hover,
+.st-key-master_bottom_actions button[data-testid="stBaseButton-secondary"]:hover {
+    background-color: #f8fafc !important;
+    border-color: #cbd5e1 !important;
+    color: #0f172a !important;
+}
+
+/* Save Master Resume button in bottom actions */
+.st-key-master_bottom_actions button[data-testid="stBaseButton-primary"] {
+    background-color: #020617 !important; /* bg-slate-950 */
+    color: #ffffff !important;
+    border: 1px solid #020617 !important;
+    border-radius: 8px !important;
+    font-size: 12px !important;
+    font-weight: 500 !important;
+    padding: 8px 16px !important;
+    min-height: 36px !important;
+    height: 36px !important;
+    width: auto !important;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05) !important;
+}
+
+.st-key-master_bottom_actions button[data-testid="stBaseButton-primary"]:hover {
+    background-color: #0f172a !important; /* hover:bg-slate-900 */
+    border-color: #0f172a !important;
+}
+
+/* Lucide save icon on Save Master Resume buttons */
+.header-save-btn-anchor + div button[data-testid="stBaseButton-primary"] [data-testid="stMarkdownContainer"] p::before,
+div[data-testid="stElementContainer"]:has(.header-save-btn-anchor) + div[data-testid="stElementContainer"] button[data-testid="stBaseButton-primary"] [data-testid="stMarkdownContainer"] p::before,
+.st-key-master_bottom_actions button[data-testid="stBaseButton-primary"] [data-testid="stMarkdownContainer"] p::before {
+    content: '' !important;
+    display: inline-block !important;
+    width: 14px !important;
+    height: 14px !important;
+    margin-right: 6px !important;
+    vertical-align: -2px !important;
+    background-color: #ffffff !important;
+    -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M15.2 3a2 2 0 0 1 1.4.6l3.8 3.8a2 2 0 0 1 .6 1.4V19a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2z'/%3E%3Cpath d='M17 21v-7a1 1 0 0 0-1-1H8a1 1 0 0 0-1 1v7'/%3E%3Cpath d='M7 3v4a1 1 0 0 0 1 1h7'/%3E%3C/svg%3E") no-repeat center / contain !important;
+    mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M15.2 3a2 2 0 0 1 1.4.6l3.8 3.8a2 2 0 0 1 .6 1.4V19a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2z'/%3E%3Cpath d='M17 21v-7a1 1 0 0 0-1-1H8a1 1 0 0 0-1 1v7'/%3E%3Cpath d='M7 3v4a1 1 0 0 0 1 1h7'/%3E%3C/svg%3E") no-repeat center / contain !important;
+}
+
+/* --- Add Job & Tailor View: <div class="space-y-8 max-w-5xl" id="view-ingest-tailor"> --- */
+/* The main containers below header are constrained to max-w-5xl = 1024px (64rem) */
+
+.st-key-view_ingest_tailor,
+div[class*="st-key-view_ingest_tailor"],
+div[data-testid="stElementContainer"]:has(.st-key-view_ingest_tailor) {
+    max-width: 1024px !important; /* max-w-5xl = 64rem = 1024px */
+    width: 100% !important;
+    margin-left: 0 !important;
+    margin-right: auto !important;
+    box-sizing: border-box !important;
+}
+
+/* Enforce 32px vertical space between children (matching Tailwind space-y-8) */
+.st-key-view_ingest_tailor {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 32px !important;
+}
+
+/* Ensure all child blocks inside view_ingest_tailor adhere strictly to 100% width of 1024px */
+.st-key-view_ingest_tailor > div,
+.st-key-view_ingest_tailor [data-testid="stElementContainer"],
+.st-key-view_ingest_tailor [data-testid="stVerticalBlockBorderWrapper"],
+.st-key-view_ingest_tailor [data-testid="stHorizontalBlock"] {
+    max-width: 1024px !important;
+    width: 100% !important;
+    margin-left: 0 !important;
+    margin-right: auto !important;
+    box-sizing: border-box !important;
+}
+
+/* 1. Optimization Blueprint Banner (#tailor-instruction-banner) */
+#tailor-instruction-banner {
+    background-color: #f8fafc !important;
+    border: 1px solid #e2e8f0 !important;
+    border-radius: 12px !important;
+    padding: 16px !important;
+    display: flex !important;
+    align-items: flex-start !important;
+    gap: 12px !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+}
+
+#tailor-instruction-banner svg {
+    width: 20px !important;
+    height: 20px !important;
+    color: #64748b !important;
+    flex-shrink: 0 !important;
+    margin-top: 2px !important;
+}
+
+#tailor-instruction-banner h4 {
+    font-size: 12px !important;
+    font-weight: 700 !important;
+    color: #1e293b !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.05em !important;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+#tailor-instruction-banner p {
+    font-size: 12px !important;
+    color: #64748b !important;
+    margin-top: 4px !important;
+    line-height: 1.625 !important;
+    margin-bottom: 0 !important;
+}
+
+/* 2. Quick Presets Section (#presets-selector-section) */
+.presets-section-title {
+    font-size: 12px !important;
+    font-weight: 700 !important;
+    color: #64748b !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.05em !important;
+    display: block !important;
+    margin-bottom: 8px !important;
+}
+
+.st-key-presets_selector_section,
+div[class*="st-key-presets_selector_section"] {
+    width: 100% !important;
+    box-sizing: border-box !important;
+}
+
+.st-key-presets_selector_section [data-testid="stHorizontalBlock"] {
+    width: 100% !important;
+    gap: 12px !important;
+}
+
+/* Analyzed Role Card Container (Unified Box enclosing info and buttons) */
+.st-key-presets_selector_section [data-testid="stHorizontalBlock"] > div[data-testid="column"] {
+    display: flex !important;
+    flex-direction: column !important;
+}
+
+div[class*="st-key-analyzed_card_box_"],
+div[data-testid="stElementContainer"]:has(div[class*="st-key-analyzed_card_box_"]) {
+    height: 100% !important;
+    width: 100% !important;
+}
+
+div[class*="st-key-analyzed_card_box_"] [data-testid="stVerticalBlockBorderWrapper"] {
+    background-color: #ffffff !important;
+    border: 1px solid #e2e8f0 !important;
+    border-radius: 12px !important;
+    padding: 12px 14px !important;
+    height: 100% !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: space-between !important;
+    transition: all 0.15s ease !important;
+    box-sizing: border-box !important;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.03) !important;
+}
+
+div[class*="st-key-analyzed_card_box_"] [data-testid="stVerticalBlockBorderWrapper"] > div {
+    gap: 8px !important;
+    height: 100% !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: space-between !important;
+}
+
+div[class*="st-key-analyzed_card_box_"]:hover [data-testid="stVerticalBlockBorderWrapper"] {
+    border-color: #cbd5e1 !important;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.05) !important;
+}
+
+div[class*="st-key-analyzed_card_box_active_"] [data-testid="stVerticalBlockBorderWrapper"] {
+    background-color: #f0fdf4 !important;
+    border-color: #86efac !important;
+}
+
+div[class*="st-key-analyzed_card_box_active_"]:hover [data-testid="stVerticalBlockBorderWrapper"] {
+    background-color: #e8fbf0 !important;
+    border-color: #4ade80 !important;
+}
+
+/* Card Content typography */
+.analyzed-card-content {
+    width: 100% !important;
+    display: flex !important;
+    flex-direction: column !important;
+    margin-bottom: 2px !important;
+}
+
+.analyzed-card-header {
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    width: 100% !important;
+    margin-bottom: 3px !important;
+}
+
+.analyzed-card-company {
+    font-size: 13px !important;
+    font-weight: 700 !important;
+    color: #0f172a !important;
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    letter-spacing: -0.01em !important;
+}
+
+.analyzed-card-badge {
+    background-color: #f1f5f9 !important;
+    color: #475569 !important;
+    font-size: 10px !important;
+    font-weight: 600 !important;
+    padding: 2px 7px !important;
+    border-radius: 9999px !important;
+    letter-spacing: 0.02em !important;
+    flex-shrink: 0 !important;
+}
+
+.analyzed-card-badge.active {
+    background-color: #dcfce7 !important;
+    color: #15803d !important;
+}
+
+.analyzed-card-title {
+    font-size: 12px !important;
+    color: #64748b !important;
+    font-weight: 500 !important;
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    margin-top: 1px !important;
+    line-height: 1.4 !important;
+}
+
+div[class*="st-key-analyzed_card_box_"] [data-testid="stHorizontalBlock"] {
+    gap: 8px !important;
+    margin-top: 2px !important;
+}
+
+div[class*="st-key-analyzed_card_box_active_"] div[class*="st-key-btn_load_"] button {
+    background-color: #ffffff !important;
+    border-color: #86efac !important;
+    color: #166534 !important;
+}
+
+div[class*="st-key-analyzed_card_box_active_"] div[class*="st-key-btn_load_"] button:hover {
+    background-color: #dcfce7 !important;
+    border-color: #22c55e !important;
+    color: #15803d !important;
+}
+
+/* Preset Cards & Analyzed Role Cards (Styled as buttons) */
+div[class*="st-key-preset_btn_"] button,
+div[class*="st-key-analyzed_card_"] button {
+    background-color: #ffffff !important;
+    border: 1px solid #e2e8f0 !important;
+    border-radius: 12px !important;
+    padding: 12px !important;
+    width: 100% !important;
+    text-align: left !important;
+    min-height: 68px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    justify-content: flex-start !important;
+    transition: all 0.15s ease !important;
+    box-shadow: none !important;
+    cursor: pointer !important;
+}
+
+div[class*="st-key-preset_btn_"] button:hover,
+div[class*="st-key-analyzed_card_"] button:hover {
+    background-color: #f8fafc !important;
+    border-color: #cbd5e1 !important;
+}
+
+div[class*="st-key-analyzed_card_active_"] button {
+    background-color: #f0fdf4 !important;
+    border-color: #86efac !important;
+}
+
+div[class*="st-key-analyzed_card_active_"] button:hover {
+    background-color: #e8fbf0 !important;
+    border-color: #4ade80 !important;
+}
+
+div[class*="st-key-preset_btn_"] button > div,
+div[class*="st-key-analyzed_card_"] button > div,
+div[class*="st-key-preset_btn_"] button [data-testid="stMarkdownContainer"],
+div[class*="st-key-analyzed_card_"] button [data-testid="stMarkdownContainer"] {
+    width: 100% !important;
+    text-align: left !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: flex-start !important;
+}
+
+div[class*="st-key-preset_btn_"] button [data-testid="stMarkdownContainer"] p,
+div[class*="st-key-analyzed_card_"] button [data-testid="stMarkdownContainer"] p {
+    width: 100% !important;
+    text-align: left !important;
+    margin: 0 !important;
+}
+
+div[class*="st-key-preset_btn_"] button [data-testid="stMarkdownContainer"] p:first-child,
+div[class*="st-key-analyzed_card_"] button [data-testid="stMarkdownContainer"] p:first-child {
+    display: flex !important;
+    flex-direction: row !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    width: 100% !important;
+    font-size: 12px !important;
+    font-weight: 600 !important;
+    color: #0f172a !important;
+}
+
+div[class*="st-key-preset_btn_"] button [data-testid="stMarkdownContainer"] code,
+div[class*="st-key-analyzed_card_"] button [data-testid="stMarkdownContainer"] code {
+    background-color: #f1f5f9 !important;
+    color: #475569 !important;
+    font-size: 10px !important;
+    font-weight: 500 !important;
+    padding: 2px 6px !important;
+    border-radius: 9999px !important;
+    border: none !important;
+    font-family: inherit !important;
+}
+
+div[class*="st-key-preset_btn_"] button [data-testid="stMarkdownContainer"] p:last-child,
+div[class*="st-key-analyzed_card_"] button [data-testid="stMarkdownContainer"] p:last-child {
+    font-size: 12px !important;
+    color: #64748b !important;
+    font-weight: 500 !important;
+    margin: 4px 0 0 0 !important;
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    width: 100% !important;
+    text-align: left !important;
+}
+
+/* Action Buttons inside Analyzed Card footer */
+div[class*="st-key-btn_load_"] button {
+    background-color: #f8fafc !important;
+    border: 1px solid #e2e8f0 !important;
+    color: #0f172a !important;
+    font-size: 11px !important;
+    font-weight: 600 !important;
+    border-radius: 8px !important;
+    padding: 3px 8px !important;
+    min-height: 26px !important;
+    height: 26px !important;
+    width: 100% !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    cursor: pointer !important;
+    box-shadow: none !important;
+    margin-top: 4px !important;
+    transition: all 0.15s ease !important;
+}
+
+div[class*="st-key-btn_load_"] button:hover {
+    background-color: #f0f9ff !important;
+    border-color: #0284c7 !important;
+    color: #0284c7 !important;
+}
+
+div[class*="st-key-btn_load_"] button [data-testid="stMarkdownContainer"] p {
+    font-size: 11px !important;
+    font-weight: 600 !important;
+    margin: 0 !important;
+    width: auto !important;
+    text-align: center !important;
+}
+
+div[class*="st-key-btn_dismiss_"] button {
+    background-color: transparent !important;
+    border: 1px solid transparent !important;
+    color: #94a3b8 !important;
+    font-size: 11px !important;
+    font-weight: 500 !important;
+    padding: 3px 6px !important;
+    min-height: 26px !important;
+    height: 26px !important;
+    width: 100% !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    cursor: pointer !important;
+    box-shadow: none !important;
+    margin-top: 4px !important;
+    transition: all 0.15s ease !important;
+}
+
+div[class*="st-key-btn_dismiss_"] button:hover {
+    color: #ef4444 !important;
+    background-color: #fef2f2 !important;
+    border-color: #fecaca !important;
+    border-radius: 8px !important;
+}
+
+div[class*="st-key-btn_dismiss_"] button [data-testid="stMarkdownContainer"] p {
+    font-size: 11px !important;
+    font-weight: 500 !important;
+    margin: 0 !important;
+    width: auto !important;
+    text-align: center !important;
+}
+
+/* 3. Ingest Form Container (#ingest-form-container) */
+.st-key-ingest_form_container,
+div[class*="st-key-ingest_form_container"],
+div[data-testid="stElementContainer"]:has(.st-key-ingest_form_container) {
+    width: 100% !important;
+    box-sizing: border-box !important;
+}
+
+.st-key-ingest_form_container [data-testid="stVerticalBlockBorderWrapper"] {
+    background-color: #ffffff !important;
+    border: 1px solid #e2e8f0 !important;
+    border-radius: 12px !important;
+    padding: 24px !important; /* p-6 */
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05) !important; /* shadow-sm */
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 16px !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+}
+
+.ingest-label {
+    font-size: 12px !important;
+    font-weight: 700 !important;
+    color: #334155 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.025em !important;
+    display: block !important;
+    margin-bottom: 6px !important;
+}
+
+.ingest-label-row {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    margin-bottom: 6px !important;
+    width: 100% !important;
+}
+
+.ingest-label-row .ingest-label {
+    margin-bottom: 0 !important;
+}
+
+.ingest-hint {
+    font-size: 11px !important;
+    color: #94a3b8 !important;
+}
+
+/* Input Fields inside ingest-form-container */
+.st-key-ingest_form_container div[data-testid="stTextInput"] div[data-baseweb="base-input"],
+.st-key-ingest_form_container div[data-testid="stTextInput"] div[data-baseweb="input"],
+.st-key-ingest_form_container div[data-testid="stTextInput"] input {
+    border: 1px solid #e2e8f0 !important;
+    border-radius: 8px !important;
+    background-color: #ffffff !important;
+    transition: all 0.15s ease !important;
+}
+
+.st-key-ingest_form_container div[data-testid="stTextInput"] input {
+    padding: 10px 12px !important;
+    font-size: 14px !important;
+    color: #0f172a !important;
+    border-radius: 8px !important;
+    border: none !important;
+}
+
+.st-key-ingest_form_container div[data-testid="stTextInput"] input::placeholder {
+    color: #94a3b8 !important;
+}
+
+.st-key-ingest_form_container div[data-testid="stTextArea"] div[data-baseweb="textarea"],
+.st-key-ingest_form_container div[data-testid="stTextArea"] div[data-baseweb="textarea"] > div,
+.st-key-ingest_form_container div[data-testid="stTextArea"] textarea {
+    border: 1px solid #e2e8f0 !important;
+    border-radius: 8px !important;
+    background-color: #ffffff !important;
+    transition: all 0.15s ease !important;
+}
+
+.st-key-ingest_form_container div[data-testid="stTextArea"] textarea {
+    padding: 12px !important;
+    font-size: 14px !important;
+    color: #0f172a !important;
+    min-height: 110px !important;
+    border-radius: 8px !important;
+    resize: vertical !important;
+    border: none !important;
+}
+
+.st-key-ingest_form_container div[data-testid="stTextArea"] textarea::placeholder {
+    color: #94a3b8 !important;
+}
+
+.st-key-ingest_form_container div[data-testid="stTextInput"] div[data-baseweb="base-input"]:focus-within,
+.st-key-ingest_form_container div[data-testid="stTextInput"] div[data-baseweb="input"]:focus-within,
+.st-key-ingest_form_container div[data-testid="stTextArea"] div[data-baseweb="textarea"]:focus-within {
+    border-color: #94a3b8 !important;
+    box-shadow: 0 0 0 1px #94a3b8 !important;
+}
+
+/* Ingest Footer divider & actions */
+.ingest-footer-divider {
+    border-top: 1px solid #f1f5f9 !important;
+    margin: 4px 0 !important;
+    width: 100% !important;
+}
+
+.ingest-footer-note {
+    font-size: 12px !important;
+    color: #94a3b8 !important;
+    font-style: italic !important;
+}
+
+.st-key-ingest_form_container button[data-testid="stBaseButton-primary"] {
+    background-color: #020617 !important; /* bg-slate-950 */
+    color: #ffffff !important;
+    border: 1px solid #020617 !important;
+    border-radius: 8px !important;
+    font-size: 12px !important;
+    font-weight: 500 !important;
+    padding: 10px 20px !important;
+    min-height: 38px !important;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05) !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 6px !important;
+    width: auto !important;
+    float: right !important;
+}
+
+.st-key-ingest_form_container button[data-testid="stBaseButton-primary"]:hover {
+    background-color: #0f172a !important;
+    border-color: #0f172a !important;
+}
+
+.st-key-ingest_form_container button[data-testid="stBaseButton-primary"] [data-testid="stMarkdownContainer"] p::before {
+    content: '' !important;
+    display: inline-block !important;
+    width: 14px !important;
+    height: 14px !important;
+    margin-right: 6px !important;
+    vertical-align: -2px !important;
+    background-color: #ffffff !important;
+    -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8'/%3E%3Cpath d='M21 3v5h-5'/%3E%3Cpath d='M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16'/%3E%3Cpath d='M8 16H3v5'/%3E%3C/svg%3E") no-repeat center / contain !important;
+    mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8'/%3E%3Cpath d='M21 3v5h-5'/%3E%3Cpath d='M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16'/%3E%3Cpath d='M8 16H3v5'/%3E%3C/svg%3E") no-repeat center / contain !important;
+}
+
+/* --- Extraction Results Block (#extraction-results-block) --- */
+.st-key-extraction_results_block,
+div[class*="st-key-extraction_results_block"] {
+    width: 100% !important;
+    box-sizing: border-box !important;
+}
+
+.st-key-extraction_results_block [data-testid="stHorizontalBlock"] {
+    display: flex !important;
+    align-items: stretch !important;
+    gap: 24px !important; /* gap-6 = 24px */
+    width: 100% !important;
+}
+
+.st-key-extraction_results_block [data-testid="stColumn"] {
+    display: flex !important;
+    flex-direction: column !important;
+}
+
+.st-key-extraction_results_block [data-testid="stColumn"] > div {
+    height: 100% !important;
+    display: flex !important;
+    flex-direction: column !important;
+}
+
+/* Left Card: #extracted-meta-card */
+.st-key-extracted_meta_card,
+div[class*="st-key-extracted_meta_card"] {
+    height: 100% !important;
+    display: flex !important;
+    flex-direction: column !important;
+}
+
+.st-key-extracted_meta_card [data-testid="stVerticalBlockBorderWrapper"] {
+    background-color: #f8fafc !important; /* bg-slate-50 */
+    border: 1px solid #e2e8f0 !important; /* border-slate-200 */
+    border-radius: 8px !important; /* rounded-lg */
+    padding: 24px !important; /* p-6 */
+    height: 100% !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: space-between !important;
+    box-sizing: border-box !important;
+}
+
+.extracted-header-row {
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: flex-start !important;
+    margin-bottom: 16px !important;
+}
+
+.extracted-sub-label {
+    font-size: 11px !important;
+    font-weight: 700 !important;
+    color: #94a3b8 !important; /* text-slate-400 */
+    text-transform: uppercase !important;
+    letter-spacing: 0.1em !important; /* tracking-widest */
+    margin: 0 0 4px 0 !important;
+}
+
+.extracted-sub-label.skills-label {
+    margin-bottom: 8px !important;
+}
+
+.extracted-job-title {
+    font-size: 20px !important; /* text-xl */
+    font-weight: 700 !important; /* font-bold */
+    color: #0f172a !important; /* text-slate-900 */
+    margin: 0 0 4px 0 !important;
+    line-height: 1.3 !important;
+}
+
+.extracted-company-exp {
+    font-size: 14px !important;
+    color: #475569 !important; /* text-slate-600 */
+    font-weight: 500 !important;
+    margin: 0 !important;
+}
+
+.extracted-badge-fulltime {
+    background-color: #dbeafe !important; /* bg-blue-100 */
+    color: #1d4ed8 !important; /* text-blue-700 */
+    font-size: 10px !important;
+    font-weight: 700 !important;
+    padding: 4px 8px !important; /* px-2 py-1 */
+    border-radius: 4px !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.05em !important;
+    white-space: nowrap !important;
+}
+
+.extracted-details-grid {
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 16px !important; /* gap-4 */
+    margin-bottom: 24px !important; /* mb-6 */
+}
+
+.extracted-detail-box {
+    background-color: #ffffff !important;
+    padding: 12px !important; /* p-3 */
+    border-radius: 6px !important; /* rounded */
+    border: 1px solid #f1f5f9 !important; /* border-slate-100 */
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05) !important; /* shadow-sm */
+}
+
+.detail-box-label {
+    font-size: 11px !important;
+    color: #94a3b8 !important; /* text-slate-400 */
+    text-transform: uppercase !important;
+    letter-spacing: 0.05em !important; /* tracking-wider */
+    margin: 0 0 4px 0 !important;
+    font-weight: 600 !important;
+}
+
+.detail-box-val {
+    font-size: 14px !important;
+    font-weight: 600 !important; /* font-semibold */
+    color: #1e293b !important; /* text-slate-800 */
+    margin: 0 !important;
+}
+
+.extracted-skills-wrap {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    gap: 8px !important; /* gap-2 */
+    margin-bottom: 24px !important;
+}
+
+.extracted-skill-badge {
+    padding: 4px 12px !important; /* px-3 py-1 */
+    border-radius: 9999px !important; /* rounded-full */
+    font-size: 12px !important; /* text-xs */
+    font-weight: 500 !important; /* font-medium */
+    display: inline-block !important;
+}
+
+.extracted-skill-badge.match {
+    background-color: #ffffff !important;
+    color: #334155 !important; /* text-slate-700 */
+    border: 1px solid #e2e8f0 !important; /* border-slate-200 */
+}
+
+.extracted-skill-badge.missing {
+    background-color: #fef2f2 !important; /* bg-red-50 */
+    color: #b91c1c !important; /* text-red-700 */
+    border: 1px solid #fecaca !important; /* border-red-200 */
+}
+
+.extracted-skill-badge.missing-preferred {
+    background-color: #f1f5f9 !important; /* bg-slate-100 */
+    color: #475569 !important; /* text-slate-600 */
+    border: 1px solid #cbd5e1 !important; /* border-slate-300 */
+}
+
+.extracted-skill-badge.partial {
+    background-color: #fffbeb !important; /* bg-amber-50 */
+    color: #b45309 !important; /* text-amber-700 */
+    border: 1px solid #fde68a !important; /* border-amber-200 */
+}
+
+.extracted-footer-divider {
+    border-top: 1px solid #e2e8f0 !important; /* border-t border-slate-200 */
+    margin-top: auto !important;
+    margin-bottom: 16px !important;
+    padding-top: 4px !important;
+}
+
+.st-key-extracted_meta_card [data-testid="stHorizontalBlock"] {
+    align-items: center !important;
+    width: 100% !important;
+}
+
+.st-key-extracted_meta_card [data-testid="stHorizontalBlock"] > div[data-testid="column"] {
+    min-width: 0 !important;
+}
+
+.st-key-extracted_meta_card [data-testid="stHorizontalBlock"] > div[data-testid="column"]:first-child {
+    flex: 1 1 0% !important;
+    min-width: 0 !important;
+}
+
+.st-key-extracted_meta_card [data-testid="stHorizontalBlock"] > div[data-testid="column"]:last-child {
+    flex: 0 0 auto !important;
+    min-width: max-content !important;
+}
+
+.st-key-extracted_meta_card [data-testid="stHorizontalBlock"] [data-testid="stElementContainer"],
+.st-key-extracted_meta_card [data-testid="stHorizontalBlock"] [data-testid="stMarkdownContainer"] {
+    min-width: 0 !important;
+    max-width: 100% !important;
+}
+
+.extracted-storage-target {
+    display: flex !important;
+    flex-direction: column !important;
+    min-width: 0 !important;
+    max-width: 100% !important;
+    overflow: hidden !important;
+}
+
+.storage-target-label {
+    font-size: 10px !important;
+    color: #94a3b8 !important; /* text-slate-400 */
+    text-transform: uppercase !important;
+    letter-spacing: 0.1em !important; /* tracking-widest */
+    font-weight: 700 !important;
+}
+
+.storage-target-path {
+    font-size: 12px !important; /* text-xs */
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace !important; /* font-mono */
+    color: #64748b !important; /* text-slate-500 */
+    margin-top: 2px !important;
+    display: block !important;
+    white-space: normal !important;
+    word-break: break-all !important;
+    overflow-wrap: anywhere !important;
+    line-height: 1.4 !important;
+    max-width: 100% !important;
+    width: 100% !important;
+}
+
+/* Button: Generate Tailored Resume */
+.st-key-btn_generate_tailored_resume button,
+div[class*="st-key-btn_generate_tailored_resume"] button {
+    background-color: #0f172a !important; /* bg-slate-900 */
+    color: #ffffff !important;
+    padding: 10px 18px !important;
+    border-radius: 8px !important; /* rounded-lg */
+    font-weight: 700 !important; /* font-bold */
+    white-space: nowrap !important;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1) !important; /* shadow-lg */
+    border: 1px solid #0f172a !important;
+    font-size: 14px !important; /* text-sm */
+    transition: all 0.15s ease !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 8px !important;
+    cursor: pointer !important;
+    width: 100% !important;
+    height: 44px !important;
+}
+
+.st-key-btn_generate_tailored_resume button:hover,
+div[class*="st-key-btn_generate_tailored_resume"] button:hover {
+    background-color: #020617 !important; /* hover:bg-slate-950 */
+    border-color: #020617 !important;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1) !important; /* hover:shadow-xl */
+}
+
+/* Lucide sparkles icon inside Generate Tailored Resume button */
+.st-key-btn_generate_tailored_resume button [data-testid="stMarkdownContainer"] p::before {
+    content: '' !important;
+    display: inline-block !important;
+    width: 16px !important;
+    height: 16px !important;
+    margin-right: 8px !important;
+    vertical-align: -2px !important;
+    background-color: #ffffff !important;
+    -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M11.017 2.814a1 1 0 0 1 1.966 0l1.051 5.558a2 2 0 0 0 1.594 1.594l5.558 1.051a1 1 0 0 1 0 1.966l-5.558 1.051a2 2 0 0 0-1.594 1.594l-1.051 5.558a1 1 0 0 1-1.966 0l-1.051-5.558a2 2 0 0 0-1.594-1.594l-5.558-1.051a1 1 0 0 1 0-1.966l5.558-1.051a2 2 0 0 0 1.594-1.594z'/%3E%3Cpath d='M20 2v4'/%3E%3Cpath d='M22 4h-4'/%3E%3Ccircle cx='4' cy='20' r='2'/%3E%3C/svg%3E") no-repeat center / contain !important;
+    mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M11.017 2.814a1 1 0 0 1 1.966 0l1.051 5.558a2 2 0 0 0 1.594 1.594l5.558 1.051a1 1 0 0 1 0 1.966l-5.558 1.051a2 2 0 0 0-1.594 1.594l-1.051 5.558a1 1 0 0 1-1.966 0l-1.051-5.558a2 2 0 0 0-1.594-1.594l-5.558-1.051a1 1 0 0 1 0-1.966l5.558-1.051a2 2 0 0 0 1.594-1.594z'/%3E%3Cpath d='M20 2v4'/%3E%3Cpath d='M22 4h-4'/%3E%3Ccircle cx='4' cy='20' r='2'/%3E%3C/svg%3E") no-repeat center / contain !important;
+}
+
+/* Right Column: #gap-analysis-card & #missing-skills-card */
+.extraction-right-col-wrapper {
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: space-between !important;
+    height: 100% !important;
+    gap: 24px !important; /* space-y-6 = 24px */
+}
+
+#gap-analysis-card {
+    border: 1px solid #e2e8f0 !important;
+    border-radius: 8px !important;
+    padding: 24px !important;
+    background-color: #ffffff !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    text-align: center !important;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05) !important;
+    flex: 1 !important;
+    justify-content: center !important;
+    box-sizing: border-box !important;
+}
+
+#gap-analysis-card .gauge-container,
+#gap-analysis-card .relative.w-32.h-32 {
+    position: relative !important;
+    width: 128px !important;
+    height: 128px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    margin: 0 auto !important;
+}
+
+#gap-analysis-card svg {
+    width: 128px !important;
+    height: 128px !important;
+    transform: rotate(-90deg) !important;
+    display: block !important;
+}
+
+#gap-analysis-card .gauge-score-text,
+#gap-analysis-card span.absolute {
+    position: absolute !important;
+    top: 50% !important;
+    left: 50% !important;
+    transform: translate(-50%, -50%) !important;
+    font-size: 30px !important;
+    font-weight: 900 !important;
+    color: #1e293b !important;
+    line-height: 1 !important;
+    margin: 0 !important;
+    text-align: center !important;
+}
+
+#gap-analysis-card p:first-child {
+    font-size: 11px !important;
+    font-weight: 700 !important;
+    color: #94a3b8 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.1em !important;
+    margin: 0 0 16px 0 !important;
+}
+
+#gap-analysis-card p:last-child {
+    margin-top: 16px !important;
+    margin-bottom: 0 !important;
+    font-size: 12px !important;
+    color: #64748b !important;
+    line-height: 1.625 !important;
+}
+
+#missing-skills-card {
+    border: 1px solid #e2e8f0 !important;
+    border-radius: 8px !important;
+    padding: 24px !important;
+    background-color: #f8fafc !important;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05) !important;
+    box-sizing: border-box !important;
+}
+
+#missing-skills-card p:first-child {
+    font-size: 11px !important;
+    font-weight: 700 !important;
+    color: #94a3b8 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.1em !important;
+    margin: 0 0 16px 0 !important;
+}
+
+#missing-skills-card ul {
+    list-style: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 12px !important; /* space-y-3 */
+}
+
+.missing-skill-item {
+    display: flex !important;
+    align-items: flex-start !important;
+    gap: 8px !important;
+    font-size: 13px !important;
+    color: #334155 !important; /* text-slate-700 */
+    font-weight: 500 !important;
+    line-height: 1.5 !important;
+}
+
+.missing-skill-item.success {
+    color: #047857 !important;
+    align-items: center !important;
+}
+
+.missing-dot {
+    width: 6px !important; /* w-1.5 */
+    height: 6px !important; /* h-1.5 */
+    border-radius: 9999px !important;
+    flex-shrink: 0 !important;
+    margin-top: 6px !important;
+}
+
+.missing-dot.red {
+    background-color: #f87171 !important; /* bg-red-400 */
+}
+
+.missing-dot.green {
+    background-color: #34d399 !important; /* bg-emerald-400 */
+    margin-top: 0 !important;
+}
+
+.missing-dot.amber {
+    background-color: #f59e0b !important; /* bg-amber-500 */
+}
+
+.missing-dot.slate {
+    background-color: #94a3b8 !important; /* bg-slate-400 */
+}
+
+/* Header "Go to Tracker" button */
+button[key="btn_goto_tracker"],
+div[data-testid="stElementContainer"]:has(button[key="btn_goto_tracker"]) button {
+    padding: 8px 16px !important;
+    border: 1px solid #e2e8f0 !important;
+    color: #475569 !important;
+    background-color: #ffffff !important;
+    border-radius: 8px !important;
+    font-size: 12px !important;
+    font-weight: 500 !important;
+    transition: all 0.15s ease !important;
+    min-height: 36px !important;
+    height: 36px !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 6px !important;
+    float: right !important;
+}
+
+button[key="btn_goto_tracker"] [data-testid="stMarkdownContainer"] p::before {
+    content: '' !important;
+    display: inline-block !important;
+    width: 14px !important;
+    height: 14px !important;
+    margin-right: 6px !important;
+    vertical-align: -2px !important;
+    background-color: #475569 !important;
+    -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect width='20' height='14' x='2' y='7' rx='2' ry='2'/%3E%3Cpath d='M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16'/%3E%3C/svg%3E") no-repeat center / contain !important;
+    mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect width='20' height='14' x='2' y='7' rx='2' ry='2'/%3E%3Cpath d='M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16'/%3E%3C/svg%3E") no-repeat center / contain !important;
+}
+
+#master-info-card .flex {
+    display: flex !important;
+}
+
+#master-info-card .items-center {
+    align-items: center !important;
+}
+
+#master-info-card .gap-3 {
+    gap: 12px !important;
+}
+
+#master-info-card .gap-2 {
+    gap: 8px !important;
+}
+
+#master-info-card .p-2\.5 {
+    padding: 10px !important;
+}
+
+#master-info-card .rounded-lg {
+    border-radius: 8px !important;
+}
+
+#master-info-card .bg-slate-50 {
+    background-color: #f8fafc !important;
+}
+
+#master-info-card .border-slate-100 {
+    border: 1px solid #f1f5f9 !important;
+}
+
+#master-info-card .text-slate-700 {
+    color: #334155 !important;
+}
+
+#master-info-card .text-slate-900 {
+    color: #0f172a !important;
+}
+
+#master-info-card .text-slate-400 {
+    color: #94a3b8 !important;
+}
+
+#master-info-card .text-slate-500 {
+    color: #64748b !important;
+}
+
+#master-info-card .p-2\.5.rounded-lg.bg-slate-50,
+#master-info-card div:has(> svg.lucide-file-code) {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 40px !important;
+    height: 40px !important;
+    min-width: 40px !important;
+    min-height: 40px !important;
+    padding: 10px !important;
+    border-radius: 8px !important;
+    background-color: #f8fafc !important;
+    border: 1px solid #f1f5f9 !important;
+    color: #334155 !important;
+    flex-shrink: 0 !important;
+    box-sizing: border-box !important;
+}
+
+#master-info-card svg.lucide-file-code,
+#master-info-card svg.w-5 {
+    width: 20px !important;
+    height: 20px !important;
+    min-width: 20px !important;
+    min-height: 20px !important;
+    stroke: currentColor !important;
+    display: block !important;
+    flex-shrink: 0 !important;
+}
+
+#master-info-card h3 {
+    font-size: 14px !important;
+    font-weight: 600 !important;
+    color: #0f172a !important;
+    line-height: 1.25 !important;
+    margin: 0 0 2px 0 !important;
+    padding: 0 !important;
+    letter-spacing: -0.01em !important;
+}
+
+#master-info-card p {
+    font-size: 12px !important;
+    color: #94a3b8 !important;
+    line-height: 1.25 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 4px !important;
+}
+
+#master-info-card code {
+    background-color: #f1f5f9 !important;
+    padding: 1px 5px !important;
+    border-radius: 4px !important;
+    color: #334155 !important;
+    font-size: 11px !important;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace !important;
+    line-height: 1.2 !important;
+    display: inline-block !important;
+    border: 1px solid #e2e8f0 !important;
+}
+
+#master-info-card span.font-medium,
+#master-info-card .text-slate-500 {
+    font-size: 12px !important;
+    color: #64748b !important;
+    font-weight: 500 !important;
+    margin-right: 8px !important;
+    white-space: nowrap !important;
+    line-height: 1 !important;
+}
+
+#master-info-card #btn-download-master-resume {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 6px !important;
+    padding: 6px 12px !important;
+    border: 1px solid #e2e8f0 !important;
+    border-radius: 8px !important;
+    background-color: #ffffff !important;
+    color: #334155 !important;
+    font-size: 12px !important;
+    font-weight: 500 !important;
+    text-decoration: none !important;
+    line-height: 1 !important;
+    cursor: pointer !important;
+    transition: all 0.15s ease !important;
+    box-sizing: border-box !important;
+    height: 32px !important;
+    white-space: nowrap !important;
+}
+
+#master-info-card #btn-download-master-resume:hover {
+    background-color: #f8fafc !important;
+    border-color: #cbd5e1 !important;
+    color: #0f172a !important;
+}
+
+#master-info-card #btn-download-master-resume svg {
+    width: 14px !important;
+    height: 14px !important;
+    min-width: 14px !important;
+    min-height: 14px !important;
+    stroke: currentColor !important;
+    display: block !important;
+    flex-shrink: 0 !important;
+}
+
+/* Style download button as secondary button with Lucide Download SVG */
+html body [data-testid="stAppViewContainer"] div[data-testid="stDownloadButton"] {
+    display: flex !important;
+    justify-content: flex-end !important;
+    height: 36px !important;
+}
+
+html body [data-testid="stAppViewContainer"] div[data-testid="stDownloadButton"] button {
+    border-radius: 8px !important;
+    font-size: 12px !important;
+    font-weight: 600 !important;
+    border: 1px solid #e2e8f0 !important;
+    color: #475569 !important;
+    background-color: #ffffff !important;
+    transition: all 0.15s ease !important;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05) !important;
+    min-height: 36px !important;
+    padding: 8px 14px !important;
+    width: 100% !important;
+}
+
+html body [data-testid="stAppViewContainer"] div[data-testid="stDownloadButton"] button [data-testid="stMarkdownContainer"] p {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 6px !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    font-size: 12px !important;
+    font-weight: 600 !important;
+    color: #475569 !important;
+    line-height: 1 !important;
+    white-space: nowrap !important;
+}
+
+html body [data-testid="stAppViewContainer"] div[data-testid="stDownloadButton"] button [data-testid="stMarkdownContainer"] p::before {
+    content: "" !important;
+    display: inline-block !important;
+    width: 14px !important; /* w-3.5 */
+    height: 14px !important; /* h-3.5 */
+    min-width: 14px !important;
+    min-height: 14px !important;
+    flex-shrink: 0 !important;
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%23475569' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' class='lucide lucide-download w-3.5 h-3.5'%3E%3Cpath d='M12 15V3'%3E%3C/path%3E%3Cpath d='M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4'%3E%3C/path%3E%3Cpath d='m7 10 5 5 5-5'%3E%3C/path%3E%3C/svg%3E") no-repeat center / contain !important;
+}
+
+html body [data-testid="stAppViewContainer"] div[data-testid="stDownloadButton"] button:hover {
+    background-color: #f8fafc !important;
+    border-color: #cbd5e1 !important;
+    color: #0f172a !important;
+}
+
+html body [data-testid="stAppViewContainer"] div[data-testid="stDownloadButton"] button:hover [data-testid="stMarkdownContainer"] p {
+    color: #0f172a !important;
+}
+
+html body [data-testid="stAppViewContainer"] div[data-testid="stDownloadButton"] button:hover [data-testid="stMarkdownContainer"] p::before {
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%230f172a' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' class='lucide lucide-download w-3.5 h-3.5'%3E%3Cpath d='M12 15V3'%3E%3C/path%3E%3Cpath d='M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4'%3E%3C/path%3E%3Cpath d='m7 10 5 5 5-5'%3E%3C/path%3E%3C/svg%3E") no-repeat center / contain !important;
+}
+
+/* Segmented Control / Filter buttons styling to match prototype */
+html body [data-testid="stAppViewContainer"] button[role="radio"] {
+    background-color: transparent !important;
+    border: 1px solid transparent !important;
+    color: #475569 !important;
+    border-radius: 6px !important;
+    font-size: 12px !important;
+    font-weight: 500 !important;
+    padding: 6px 12px !important;
+    transition: all 0.15s ease !important;
+    box-shadow: none !important;
+}
+
+html body [data-testid="stAppViewContainer"] button[role="radio"]:hover {
+    background-color: #f1f5f9 !important;
+    color: #0f172a !important;
+}
+
+html body [data-testid="stAppViewContainer"] button[role="radio"][aria-checked="true"],
+html body [data-testid="stAppViewContainer"] button[role="radio"][aria-checked="true"]:hover,
+html body [data-testid="stAppViewContainer"] button[role="radio"][aria-checked="true"]:focus,
+html body [data-testid="stAppViewContainer"] button[role="radio"][aria-checked="true"]:active {
+    background-color: #0f172a !important;
+    color: #ffffff !important;
+    border-color: #0f172a !important;
+    box-shadow: none !important;
+}
+
+html body [data-testid="stAppViewContainer"] button[role="radio"][aria-checked="true"] * {
+    color: #ffffff !important;
+    background-color: transparent !important;
+    border-color: #0f172a !important;
+}
+
+/* Seamless editor textarea */
+div[data-testid="stTextArea"]:has(textarea[aria-label="Master Resume Content"]) textarea,
+.st-key-markdown_editor_container textarea {
+    border: none !important;
+    outline: none !important;
+    box-shadow: none !important;
+    padding: 20px !important; /* Tailwind p-5 = 20px gap around container */
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace !important;
+    font-size: 14px !important;
+    color: #1e293b !important;
+    line-height: 1.625 !important;
+    background-color: #ffffff !important;
+    box-sizing: border-box !important;
+}
+
+div[data-testid="stTextArea"]:has(textarea[aria-label="Master Resume Content"]) div {
+    border: none !important;
+    background-color: transparent !important;
+    box-shadow: none !important;
+}
+
+/* --- Application Tracker View: <div class="space-y-6 max-w-5xl" id="view-application-tracker"> --- */
+/* Constrained to max-w-5xl = 1024px matching Add Job & Tailor View */
+
+.st-key-view_application_tracker,
+div[class*="st-key-view_application_tracker"],
+div[data-testid="stElementContainer"]:has(.st-key-view_application_tracker),
+.st-key-view_dashboard,
+div[class*="st-key-view_dashboard"],
+div[data-testid="stElementContainer"]:has(.st-key-view_dashboard) {
+    max-width: 1024px !important; /* max-w-5xl = 64rem = 1024px */
+    width: 100% !important;
+    margin-left: 0 !important;
+    margin-right: auto !important;
+    box-sizing: border-box !important;
+}
+
+.st-key-view_application_tracker,
+.st-key-view_dashboard {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 24px !important;
+}
+
+.st-key-view_application_tracker > div,
+.st-key-view_application_tracker [data-testid="stElementContainer"],
+.st-key-view_application_tracker [data-testid="stVerticalBlockBorderWrapper"],
+.st-key-view_application_tracker [data-testid="stHorizontalBlock"],
+.st-key-view_dashboard > div,
+.st-key-view_dashboard [data-testid="stElementContainer"],
+.st-key-view_dashboard [data-testid="stVerticalBlockBorderWrapper"],
+.st-key-view_dashboard [data-testid="stHorizontalBlock"] {
+    max-width: 1024px !important;
+    width: 100% !important;
+    margin-left: 0 !important;
+    margin-right: auto !important;
+    box-sizing: border-box !important;
+}
+
+/* Hide anchor containers and inactive empty slots so they never add vertical flex gap */
+.element-container:has(.tracker-search-anchor),
+.element-container:has(.tracker-header-anchor),
+.element-container:has(.tracker-row-anchor),
+div[data-testid="stElementContainer"]:has(.tracker-search-anchor),
+div[data-testid="stElementContainer"]:has(.tracker-header-anchor),
+div[data-testid="stElementContainer"]:has(.tracker-row-anchor),
+div[data-testid="stElementContainer"]:has([data-testid="stEmpty"]),
+div[data-testid="stElementContainer"]:empty {
+    display: none !important;
+    height: 0px !important;
+    margin: 0px !important;
+    padding: 0px !important;
+    overflow: hidden !important;
+}
+
+/* Search & Filter container: background #f8fafc, white search box & white filter dropdown */
+div[data-testid="stVerticalBlock"].st-key-tracker_search_container,
+.st-key-tracker_search_container,
+.st-key-tracker_search_container > [data-testid="stVerticalBlockBorderWrapper"] {
+    background-color: #f8fafc !important;
+    border: 1px solid #e2e8f0 !important;
+    border-radius: 12px !important;
+    padding: 14px 20px !important;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.03) !important;
+}
+
+/* Search Input inside Search Container (Streamlit 1.59 stTextInputRootElement) */
+.st-key-tracker_search_container [data-testid="stTextInputRootElement"],
+.st-key-tracker_search_input [data-testid="stTextInputRootElement"],
+.st-key-tracker_search_container div[data-testid="stTextInput"] div[data-baseweb="input"] {
+    background-color: #ffffff !important;
+    border: 1px solid #e2e8f0 !important;
+    border-radius: 8px !important;
+    min-height: 36px !important;
+    height: 36px !important;
+    box-shadow: none !important;
+    transition: all 0.15s ease !important;
+}
+
+.st-key-tracker_search_container [data-testid="stTextInputRootElement"]:focus-within,
+.st-key-tracker_search_input [data-testid="stTextInputRootElement"]:focus-within {
+    border-color: #94a3b8 !important;
+}
+
+.st-key-tracker_search_container div[data-testid="stTextInput"] input,
+.st-key-tracker_search_input input {
+    padding: 6px 12px !important;
+    font-size: 13px !important;
+    font-weight: 500 !important;
+    color: #0f172a !important;
+    background-color: transparent !important;
+    border: none !important;
+}
+
+.st-key-tracker_search_container div[data-testid="stTextInput"] input::placeholder,
+.st-key-tracker_search_input input::placeholder {
+    color: #94a3b8 !important;
+    font-size: 13px !important;
+    font-weight: 400 !important;
+}
+
+/* Filter Dropdown inside Search Container (Streamlit 1.59 React Aria stSelectbox) */
+.st-key-tracker_search_container [data-testid="stSelectbox"] div:has(> button[aria-label="Open"]),
+.st-key-tracker_status_filter [data-testid="stSelectbox"] div:has(> button[aria-label="Open"]),
+.st-key-tracker_search_container [data-testid="stSelectbox"] .e152jjix0,
+.st-key-tracker_status_filter [data-testid="stSelectbox"] .e152jjix0,
+.st-key-tracker_search_container div[data-testid="stSelectbox"] div[data-baseweb="select"] > div {
+    background-color: #ffffff !important;
+    border: 1px solid #e2e8f0 !important;
+    border-radius: 8px !important;
+    min-height: 36px !important;
+    height: 36px !important;
+    font-size: 13px !important;
+    font-weight: 500 !important;
+    color: #0f172a !important;
+    cursor: pointer !important;
+    box-shadow: none !important;
+}
+
+.st-key-tracker_search_container [data-testid="stSelectbox"] input,
+.st-key-tracker_status_filter [data-testid="stSelectbox"] input,
+.st-key-tracker_search_container [data-testid="stSelectbox"] button[aria-label="Open"],
+.st-key-tracker_status_filter [data-testid="stSelectbox"] button[aria-label="Open"] {
+    font-size: 13px !important;
+    font-weight: 500 !important;
+    color: #0f172a !important;
+    background-color: transparent !important;
+    cursor: pointer !important;
+}
+
+.st-key-tracker_search_container [data-testid="stSelectbox"] button[aria-label="Open"] svg,
+.st-key-tracker_status_filter [data-testid="stSelectbox"] button[aria-label="Open"] svg {
+    color: #64748b !important;
+    fill: #64748b !important;
+}
+
+/* Tracker Jobs Table Container */
+div[data-testid="stVerticalBlock"].st-key-tracker_table_container,
+.st-key-tracker_table_container,
+.st-key-tracker_table_container > [data-testid="stVerticalBlockBorderWrapper"] {
+    background-color: #ffffff !important;
+    border: 1px solid #e2e8f0 !important;
+    border-radius: 12px !important;
+    padding: 0 !important;
+    gap: 0 !important;
+    overflow: hidden !important;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05) !important;
+}
+
+/* Table Header styling: background #f1f5f9, generous padding, and font color #62758e */
+div[data-testid="stVerticalBlock"].st-key-tracker_table_header,
+.st-key-tracker_table_header,
+div[class*="st-key-tracker_table_header"] {
+    background-color: #f1f5f9 !important;
+    padding: 16px 24px !important;
+    min-height: 48px !important;
+    margin: 0 !important;
+    border-bottom: 1px solid #e2e8f0 !important;
+    border-top-left-radius: 11px !important;
+    border-top-right-radius: 11px !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+}
+
+.st-key-tracker_table_header > [data-testid="stHorizontalBlock"] {
+    align-items: center !important;
+    margin: 0 !important;
+    padding: 2px 0 !important;
+}
+
+.st-key-tracker_table_header .tracker-col-header-text,
+.st-key-tracker_table_header [data-testid="stMarkdownContainer"] div,
+.st-key-tracker_table_header [data-testid="stMarkdownContainer"] p {
+    font-size: 11px !important;
+    font-weight: 700 !important;
+    color: #62758e !important;
+    letter-spacing: 0.05em !important;
+    text-transform: uppercase !important;
+    margin: 0 !important;
+    line-height: 1.4 !important;
+}
+
+/* Table Row styling: matching 24px horizontal padding and vertical center alignment */
+div[data-testid="stVerticalBlock"][class*="st-key-tracker_row_"],
+div[class*="st-key-tracker_row_"] {
+    padding: 12px 24px !important;
+    margin: 0 !important;
+    border-bottom: 1px solid #f1f5f9 !important;
+    transition: background-color 0.15s ease !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+}
+
+div[class*="st-key-tracker_row_"]:hover {
+    background-color: #f8fafc !important;
+}
+
+div[class*="st-key-tracker_row_"] [data-testid="stHorizontalBlock"] {
+    align-items: center !important;
+}
+
+div[class*="st-key-tracker_row_"] [data-testid="stColumn"] {
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    min-width: 0 !important;
+    overflow: hidden !important;
+}
+
+div[class*="st-key-tracker_row_"] [data-testid="stElementContainer"],
+div[class*="st-key-tracker_row_"] [data-testid="stMarkdownContainer"] {
+    margin: 0 !important;
+    padding: 0 !important;
+    display: flex !important;
+    align-items: center !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+}
+
+/* Per-Role Status Dropdown: 13px normal font weight matching Job Title, 32px height, distinct color per status, constrained to column width */
+div[class*="st-key-status_tone_"],
+div[class*="st-key-status_sel_"],
+div[class*="st-key-status_sel_"] [data-testid="stSelectbox"] {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    box-sizing: border-box !important;
+}
+
+div[class*="st-key-status_sel_"] [data-testid="stSelectbox"] div:has(> button[aria-label="Open"]),
+div[class*="st-key-status_sel_"] [data-testid="stSelectbox"] .e152jjix0 {
+    background-color: #eff6ff !important;
+    color: #1d4ed8 !important;
+    border: 1px solid #bfdbfe !important;
+    border-radius: 6px !important;
+    min-height: 32px !important;
+    height: 32px !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    overflow: hidden !important;
+    cursor: pointer !important;
+    outline: none !important;
+    box-shadow: none !important;
+    box-sizing: border-box !important;
+    display: flex !important;
+    align-items: center !important;
+}
+
+div[class*="st-key-status_sel_"] [data-testid="stSelectbox"] input,
+div[class*="st-key-status_sel_"] [data-testid="stSelectbox"] .e152jjix1 {
+    font-size: 13px !important;
+    font-weight: 400 !important;
+    padding: 0 4px 0 8px !important;
+    height: 30px !important;
+    line-height: 30px !important;
+    width: 100% !important;
+    min-width: 0 !important;
+    flex: 1 1 0% !important;
+    text-overflow: ellipsis !important;
+    color: #1d4ed8 !important;
+    cursor: pointer !important;
+}
+
+div[class*="st-key-status_sel_"] [data-testid="stSelectbox"] button[aria-label="Open"],
+div[class*="st-key-status_sel_"] [data-testid="stSelectbox"] .e152jjix2 {
+    padding-right: 6px !important;
+    padding-left: 2px !important;
+    height: 30px !important;
+    flex-shrink: 0 !important;
+    color: #1d4ed8 !important;
+    cursor: pointer !important;
+}
+
+div[class*="st-key-status_sel_"] [data-testid="stSelectbox"] svg {
+    width: 14px !important;
+    height: 14px !important;
+}
+
+/* Status Color Variants (Streamlit 1.59 React Aria stSelectbox) */
+/* 1. Analyzed: Slate */
+div[class*="st-key-status_tone_analyzed_"] [data-testid="stSelectbox"] div:has(> button[aria-label="Open"]),
+div[class*="st-key-status_tone_analyzed_"] [data-testid="stSelectbox"] .e152jjix0 {
+    background-color: #f1f5f9 !important;
+    border-color: #cbd5e1 !important;
+}
+div[class*="st-key-status_tone_analyzed_"] [data-testid="stSelectbox"] input,
+div[class*="st-key-status_tone_analyzed_"] [data-testid="stSelectbox"] .e152jjix1,
+div[class*="st-key-status_tone_analyzed_"] [data-testid="stSelectbox"] button[aria-label="Open"],
+div[class*="st-key-status_tone_analyzed_"] [data-testid="stSelectbox"] .e152jjix2,
+div[class*="st-key-status_tone_analyzed_"] [data-testid="stSelectbox"] svg {
+    color: #334155 !important;
+    fill: #334155 !important;
+    font-weight: 400 !important;
+}
+
+/* 2. Tailored: Amber */
+div[class*="st-key-status_tone_tailored_"] [data-testid="stSelectbox"] div:has(> button[aria-label="Open"]),
+div[class*="st-key-status_tone_tailored_"] [data-testid="stSelectbox"] .e152jjix0 {
+    background-color: #fef3c7 !important;
+    border-color: #fde68a !important;
+}
+div[class*="st-key-status_tone_tailored_"] [data-testid="stSelectbox"] input,
+div[class*="st-key-status_tone_tailored_"] [data-testid="stSelectbox"] .e152jjix1,
+div[class*="st-key-status_tone_tailored_"] [data-testid="stSelectbox"] button[aria-label="Open"],
+div[class*="st-key-status_tone_tailored_"] [data-testid="stSelectbox"] .e152jjix2,
+div[class*="st-key-status_tone_tailored_"] [data-testid="stSelectbox"] svg {
+    color: #b45309 !important;
+    fill: #b45309 !important;
+    font-weight: 400 !important;
+}
+
+/* 3. Applied: Indigo */
+div[class*="st-key-status_tone_applied_"] [data-testid="stSelectbox"] div:has(> button[aria-label="Open"]),
+div[class*="st-key-status_tone_applied_"] [data-testid="stSelectbox"] .e152jjix0 {
+    background-color: #e0e7ff !important;
+    border-color: #c7d2fe !important;
+}
+div[class*="st-key-status_tone_applied_"] [data-testid="stSelectbox"] input,
+div[class*="st-key-status_tone_applied_"] [data-testid="stSelectbox"] .e152jjix1,
+div[class*="st-key-status_tone_applied_"] [data-testid="stSelectbox"] button[aria-label="Open"],
+div[class*="st-key-status_tone_applied_"] [data-testid="stSelectbox"] .e152jjix2,
+div[class*="st-key-status_tone_applied_"] [data-testid="stSelectbox"] svg {
+    color: #4338ca !important;
+    fill: #4338ca !important;
+    font-weight: 400 !important;
+}
+
+/* 4. Interviewing: Blue */
+div[class*="st-key-status_tone_interviewing_"] [data-testid="stSelectbox"] div:has(> button[aria-label="Open"]),
+div[class*="st-key-status_tone_interviewing_"] [data-testid="stSelectbox"] .e152jjix0 {
+    background-color: #dbeafe !important;
+    border-color: #bfdbfe !important;
+}
+div[class*="st-key-status_tone_interviewing_"] [data-testid="stSelectbox"] input,
+div[class*="st-key-status_tone_interviewing_"] [data-testid="stSelectbox"] .e152jjix1,
+div[class*="st-key-status_tone_interviewing_"] [data-testid="stSelectbox"] button[aria-label="Open"],
+div[class*="st-key-status_tone_interviewing_"] [data-testid="stSelectbox"] .e152jjix2,
+div[class*="st-key-status_tone_interviewing_"] [data-testid="stSelectbox"] svg {
+    color: #1d4ed8 !important;
+    fill: #1d4ed8 !important;
+    font-weight: 400 !important;
+}
+
+/* 5. Offered: Emerald Green */
+div[class*="st-key-status_tone_offered_"] [data-testid="stSelectbox"] div:has(> button[aria-label="Open"]),
+div[class*="st-key-status_tone_offered_"] [data-testid="stSelectbox"] .e152jjix0 {
+    background-color: #dcfce7 !important;
+    border-color: #86efac !important;
+}
+div[class*="st-key-status_tone_offered_"] [data-testid="stSelectbox"] input,
+div[class*="st-key-status_tone_offered_"] [data-testid="stSelectbox"] .e152jjix1,
+div[class*="st-key-status_tone_offered_"] [data-testid="stSelectbox"] button[aria-label="Open"],
+div[class*="st-key-status_tone_offered_"] [data-testid="stSelectbox"] .e152jjix2,
+div[class*="st-key-status_tone_offered_"] [data-testid="stSelectbox"] svg {
+    color: #15803d !important;
+    fill: #15803d !important;
+    font-weight: 400 !important;
+}
+
+/* 6. Rejected: Red */
+div[class*="st-key-status_tone_rejected_"] [data-testid="stSelectbox"] div:has(> button[aria-label="Open"]),
+div[class*="st-key-status_tone_rejected_"] [data-testid="stSelectbox"] .e152jjix0 {
+    background-color: #fef2f2 !important;
+    border-color: #fecaca !important;
+}
+div[class*="st-key-status_tone_rejected_"] [data-testid="stSelectbox"] input,
+div[class*="st-key-status_tone_rejected_"] [data-testid="stSelectbox"] .e152jjix1,
+div[class*="st-key-status_tone_rejected_"] [data-testid="stSelectbox"] button[aria-label="Open"],
+div[class*="st-key-status_tone_rejected_"] [data-testid="stSelectbox"] .e152jjix2,
+div[class*="st-key-status_tone_rejected_"] [data-testid="stSelectbox"] svg {
+    color: #b91c1c !important;
+    fill: #b91c1c !important;
+    font-weight: 400 !important;
+}
+
+/* 7. Ghosted / Withdrawn / Ignored: Neutral Muted Slate */
+div[class*="st-key-status_tone_ghosted_"] [data-testid="stSelectbox"] div:has(> button[aria-label="Open"]),
+div[class*="st-key-status_tone_withdrawn_"] [data-testid="stSelectbox"] div:has(> button[aria-label="Open"]),
+div[class*="st-key-status_tone_ignored_"] [data-testid="stSelectbox"] div:has(> button[aria-label="Open"]),
+div[class*="st-key-status_tone_ghosted_"] [data-testid="stSelectbox"] .e152jjix0,
+div[class*="st-key-status_tone_withdrawn_"] [data-testid="stSelectbox"] .e152jjix0,
+div[class*="st-key-status_tone_ignored_"] [data-testid="stSelectbox"] .e152jjix0 {
+    background-color: #f8fafc !important;
+    border-color: #e2e8f0 !important;
+}
+div[class*="st-key-status_tone_ghosted_"] [data-testid="stSelectbox"] input,
+div[class*="st-key-status_tone_withdrawn_"] [data-testid="stSelectbox"] input,
+div[class*="st-key-status_tone_ignored_"] [data-testid="stSelectbox"] input,
+div[class*="st-key-status_tone_ghosted_"] [data-testid="stSelectbox"] .e152jjix1,
+div[class*="st-key-status_tone_withdrawn_"] [data-testid="stSelectbox"] .e152jjix1,
+div[class*="st-key-status_tone_ignored_"] [data-testid="stSelectbox"] .e152jjix1,
+div[class*="st-key-status_tone_ghosted_"] [data-testid="stSelectbox"] button[aria-label="Open"],
+div[class*="st-key-status_tone_withdrawn_"] [data-testid="stSelectbox"] button[aria-label="Open"],
+div[class*="st-key-status_tone_ignored_"] [data-testid="stSelectbox"] button[aria-label="Open"],
+div[class*="st-key-status_tone_ghosted_"] [data-testid="stSelectbox"] .e152jjix2,
+div[class*="st-key-status_tone_withdrawn_"] [data-testid="stSelectbox"] .e152jjix2,
+div[class*="st-key-status_tone_ignored_"] [data-testid="stSelectbox"] .e152jjix2,
+div[class*="st-key-status_tone_ghosted_"] [data-testid="stSelectbox"] svg,
+div[class*="st-key-status_tone_withdrawn_"] [data-testid="stSelectbox"] svg,
+div[class*="st-key-status_tone_ignored_"] [data-testid="stSelectbox"] svg {
+    color: #64748b !important;
+    fill: #64748b !important;
+    font-weight: 400 !important;
+}
+
+/* Follow-up Date input inside Tracker rows: 32px height matching Match Score & Status, single border */
+div[class*="st-key-follow_in_"],
+div[class*="st-key-follow_in_"] [data-testid="stDateInput"] {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+}
+
+div[class*="st-key-follow_in_"] [data-testid="stDateInput"] > div,
+div[class*="st-key-follow_in_"] [data-testid="stDateInput"] div[data-baseweb="base-input"] {
+    border: none !important;
+    background-color: transparent !important;
+    box-shadow: none !important;
+    min-height: 32px !important;
+    height: 32px !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    display: flex !important;
+    align-items: center !important;
+}
+
+div[class*="st-key-follow_in_"] [data-testid="stDateInput"] div[data-baseweb="input"] {
+    min-height: 32px !important;
+    height: 32px !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    border: 1px solid #e2e8f0 !important;
+    border-radius: 6px !important;
+    background-color: #ffffff !important;
+    font-size: 13px !important;
+    box-shadow: none !important;
+    box-sizing: border-box !important;
+    display: flex !important;
+    align-items: center !important;
+}
+
+div[class*="st-key-follow_in_"] [data-testid="stDateInput"] input {
+    font-size: 13px !important;
+    font-weight: 400 !important;
+    padding: 0 8px !important;
+    height: 30px !important;
+    line-height: 30px !important;
+    width: 100% !important;
+    min-width: 0 !important;
+    color: #334155 !important;
+    border: none !important;
+    background-color: transparent !important;
+    box-shadow: none !important;
+}
+
+/* Company button in Tracker row (strictly left-aligned dark slate) */
+div[class*="st-key-comp_btn_"],
+div[class*="st-key-comp_btn_"] [data-testid="stButton"],
+div[class*="st-key-comp_btn_"] [data-testid="stButton"] > div {
+    width: 100% !important;
+    display: flex !important;
+    justify-content: flex-start !important;
+    text-align: left !important;
+}
+
+div[class*="st-key-comp_btn_"] button {
+    padding: 0 !important;
+    min-height: 32px !important;
+    width: 100% !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+    text-align: left !important;
+    color: #0f172a !important;
+    font-size: 13px !important;
+    font-weight: 700 !important;
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+}
+
+div[class*="st-key-comp_btn_"] button > div,
+div[class*="st-key-comp_btn_"] button > div > span,
+div[class*="st-key-comp_btn_"] button [data-testid="stMarkdownContainer"],
+div[class*="st-key-comp_btn_"] button [data-testid="stMarkdownContainer"] p {
+    width: 100% !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+    text-align: left !important;
+    color: #0f172a !important;
+    font-size: 13px !important;
+    font-weight: 700 !important;
+    margin: 0 !important;
+}
+
+div[class*="st-key-comp_btn_"] button:hover,
+div[class*="st-key-comp_btn_"] button:hover [data-testid="stMarkdownContainer"] p {
+    color: #2563eb !important;
+    background: transparent !important;
+}
+
+/* Action Column: "View" text link (targeted via act_view_btn_ so it does not match view_application_tracker) */
+div[class*="st-key-act_view_btn_"] button {
+    padding: 0 4px !important;
+    min-height: 32px !important;
+    height: 32px !important;
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    color: #2563eb !important;
+    font-size: 12px !important;
+    font-weight: 600 !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+    cursor: pointer !important;
+}
+
+div[class*="st-key-act_view_btn_"] button > div,
+div[class*="st-key-act_view_btn_"] button [data-testid="stMarkdownContainer"] p {
+    font-size: 12px !important;
+    font-weight: 600 !important;
+    color: #2563eb !important;
+    margin: 0 !important;
+    line-height: 1 !important;
+}
+
+div[class*="st-key-act_view_btn_"] button:hover,
+div[class*="st-key-act_view_btn_"] button:hover [data-testid="stMarkdownContainer"] p {
+    color: #1d4ed8 !important;
+    text-decoration: underline !important;
+    background: transparent !important;
+}
+
+/* Clickable .md link inside Generated Tailored Resume dialog */
+div[class*="st-key-open_md_link_btn_"] button {
+    padding: 4px 0 !important;
+    min-height: 28px !important;
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    color: #2563eb !important;
+    text-align: left !important;
+    cursor: pointer !important;
+}
+
+div[class*="st-key-open_md_link_btn_"] button [data-testid="stMarkdownContainer"] p {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace !important;
+    font-size: 12px !important;
+    font-weight: 600 !important;
+    color: #2563eb !important;
+    text-decoration: underline !important;
+    margin: 0 !important;
+    word-break: break-all !important;
+    text-align: left !important;
+}
+
+div[class*="st-key-open_md_link_btn_"] button:hover [data-testid="stMarkdownContainer"] p {
+    color: #1d4ed8 !important;
+}
+
+/* Action Column: Delete Bin Button using exact Lucide trash-2 SVG (w-3.5 h-3.5 = 14px x 14px) in Grey */
+div[class*="st-key-del_"] button {
+    padding: 4px !important;
+    min-height: 32px !important;
+    height: 32px !important;
+    width: 32px !important;
+    background: transparent !important;
+    border: 1px solid transparent !important;
+    border-radius: 6px !important;
+    box-shadow: none !important;
+    color: #94a3b8 !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    cursor: pointer !important;
+    transition: all 0.15s ease !important;
+}
+
+div[class*="st-key-del_"] button [data-testid="stMarkdownContainer"] p {
+    margin: 0 !important;
+    padding: 0 !important;
+    line-height: 0 !important;
+    font-size: 0 !important;
+    color: #94a3b8 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+}
+
+div[class*="st-key-del_"] button [data-testid="stMarkdownContainer"] p::before {
+    content: "" !important;
+    display: inline-block !important;
+    width: 14px !important; /* w-3.5 */
+    height: 14px !important; /* h-3.5 */
+    min-width: 14px !important;
+    min-height: 14px !important;
+    background-color: #94a3b8 !important;
+    -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' class='lucide lucide-trash2 lucide-trash-2 w-3.5 h-3.5' aria-hidden='true'%3E%3Cpath d='M10 11v6'%3E%3C/path%3E%3Cpath d='M14 11v6'%3E%3C/path%3E%3Cpath d='M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6'%3E%3C/path%3E%3Cpath d='M3 6h18'%3E%3C/path%3E%3Cpath d='M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2'%3E%3C/path%3E%3C/svg%3E") no-repeat center / contain !important;
+    mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' class='lucide lucide-trash2 lucide-trash-2 w-3.5 h-3.5' aria-hidden='true'%3E%3Cpath d='M10 11v6'%3E%3C/path%3E%3Cpath d='M14 11v6'%3E%3C/path%3E%3Cpath d='M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6'%3E%3C/path%3E%3Cpath d='M3 6h18'%3E%3C/path%3E%3Cpath d='M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2'%3E%3C/path%3E%3C/svg%3E") no-repeat center / contain !important;
+}
+
+div[class*="st-key-del_"] button:hover {
+    color: #ef4444 !important;
+    background-color: #fef2f2 !important;
+    border-color: #fecaca !important;
+}
+
+div[class*="st-key-del_"] button:hover [data-testid="stMarkdownContainer"] p::before {
+    background-color: #ef4444 !important;
+}
+
+/* --- Sidebar Footer & DB Status Box (matches prototype) --- */
+.sidebar-footer-container {
+    margin-top: 1.75rem !important;
+    margin-bottom: 14px !important;
+    display: flex !important;
+    flex-direction: column !important;
+}
+
+.sidebar-db-status {
+    background-color: #ecfdf5 !important;
+    border: 1px solid #d1fae5 !important;
+    border-radius: 6px !important;
+    padding: 8px 12px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 4px !important;
+}
+
+.sidebar-db-header {
+    display: flex !important;
+    align-items: center !important;
+    gap: 8px !important;
+}
+
+.sidebar-db-dot {
+    width: 8px !important;
+    height: 8px !important;
+    border-radius: 50% !important;
+    background-color: #10b981 !important;
+    flex-shrink: 0 !important;
+}
+
+.sidebar-db-title {
+    font-size: 12px !important;
+    font-weight: 600 !important;
+    color: #065f46 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.05em !important;
+    line-height: 1 !important;
+}
+
+.sidebar-db-status p,
+.sidebar-db-text {
+    font-size: 10px !important;
+    color: rgba(4, 120, 87, 0.8) !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    line-height: 1.4 !important;
+}
+
+.sidebar-db-code {
+    background-color: rgba(209, 250, 229, 0.55) !important;
+    padding: 2px 4px !important;
+    border-radius: 4px !important;
+    color: #065f46 !important;
+    font-size: 10px !important;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace !important;
+}
+
+.sidebar-db-time {
+    font-weight: 600 !important;
+    color: #065f46 !important;
+}
+
+/* Sidebar Sync GitHub Button (matches prototype btn-sync-github) */
+html body [data-testid="stSidebar"] button[data-testid="stBaseButton-primary"],
+html body [data-testid="stSidebar"] div[data-testid="stBaseButton-primary"] button,
+html body [data-testid="stSidebar"] .stButton>button[kind="primary"] {
+    background-color: #1e293b !important;
+    border: 1px solid #1e293b !important;
+    border-radius: 6px !important;
+    color: #ffffff !important;
+    font-weight: 700 !important;
+    font-size: 0.875rem !important;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05) !important;
+    padding: 8px 16px !important;
+    min-height: 38px !important;
+    transition: background-color 0.15s ease, border-color 0.15s ease !important;
+}
+
+html body [data-testid="stSidebar"] button[data-testid="stBaseButton-primary"]:hover,
+html body [data-testid="stSidebar"] div[data-testid="stBaseButton-primary"] button:hover,
+html body [data-testid="stSidebar"] .stButton>button[kind="primary"]:hover {
+    background-color: #0f172a !important;
+    border-color: #0f172a !important;
+}
+
+html body [data-testid="stSidebar"] button[data-testid="stBaseButton-primary"] [data-testid="stMarkdownContainer"] p,
+html body [data-testid="stSidebar"] div[data-testid="stBaseButton-primary"] button [data-testid="stMarkdownContainer"] p,
+html body [data-testid="stSidebar"] .stButton>button[kind="primary"] [data-testid="stMarkdownContainer"] p {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 8px !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    font-size: 0.875rem !important;
+    font-weight: 700 !important;
+    color: #ffffff !important;
+    line-height: 1.25rem !important;
+}
+
+html body [data-testid="stSidebar"] button[data-testid="stBaseButton-primary"] [data-testid="stMarkdownContainer"] p::before,
+html body [data-testid="stSidebar"] div[data-testid="stBaseButton-primary"] button [data-testid="stMarkdownContainer"] p::before,
+html body [data-testid="stSidebar"] .stButton>button[kind="primary"] [data-testid="stMarkdownContainer"] p::before {
+    content: "" !important;
+    display: inline-block !important;
+    width: 16px !important;
+    height: 16px !important;
+    min-width: 16px !important;
+    min-height: 16px !important;
+    flex-shrink: 0 !important;
+    background-color: #ffffff !important;
+    -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z'/%3E%3Ccircle cx='12' cy='12' r='3'/%3E%3C/svg%3E") no-repeat center / contain !important;
+    mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z'/%3E%3Ccircle cx='12' cy='12' r='3'/%3E%3C/svg%3E") no-repeat center / contain !important;
+}
+
+/* --- Main Content Header & Layout (matches prototype #main-header) --- */
+header[data-testid="stHeader"] {
+    background: transparent !important;
+    height: 0px !important;
+    min-height: 0px !important;
+}
+
+[data-testid="stMainBlockContainer"],
+.block-container {
+    padding-top: 1.5rem !important;
+    padding-bottom: 3rem !important;
+    padding-left: 2rem !important;
+    padding-right: 2rem !important;
+    max-width: 100% !important;
+}
+
+.main-header-info {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 4px !important;
+}
+
+.main-header-title {
+    font-size: 1.5rem !important; /* 24px - text-2xl */
+    font-weight: 700 !important; /* font-bold */
+    color: #0f172a !important; /* text-slate-900 */
+    line-height: 2rem !important;
+    letter-spacing: -0.025em !important;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+.main-header-desc {
+    font-size: 0.75rem !important; /* 12px - text-xs */
+    color: #64748b !important; /* text-slate-500 */
+    margin: 0 !important;
+    padding: 0 !important;
+    line-height: 1rem !important;
+}
+
+/* Header Breadcrumb */
+.main-header-breadcrumb {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: flex-end !important;
+    gap: 8px !important;
+    font-size: 0.75rem !important; /* 12px - text-xs */
+    color: #94a3b8 !important; /* text-slate-400 */
+    white-space: nowrap !important;
+}
+
+.main-header-breadcrumb .bc-item {
+    color: #94a3b8 !important;
+    transition: color 0.15s ease !important;
+}
+
+.main-header-breadcrumb .bc-item:hover {
+    color: #475569 !important;
+    cursor: pointer !important;
+}
+
+.main-header-breadcrumb .bc-sep {
+    color: #cbd5e1 !important; /* text-slate-300 */
+}
+
+.main-header-breadcrumb .bc-active {
+    color: #0f172a !important; /* text-slate-900 */
+    font-weight: 600 !important; /* font-semibold */
+}
+
+/* Clean Header Divider (matches prototype border-b border-slate-100 pb-6) */
+.main-header-border {
+    border-bottom: 1px solid #f1f5f9 !important;
+    margin-top: 1.25rem !important;
+    margin-bottom: 1.5rem !important;
+    width: 100% !important;
+}
+
+/* Anchor for Action Buttons */
+.element-container:has(.header-action-btn-anchor),
+.element-container:has(.header-save-btn-anchor),
+.element-container:has(.header-add-btn-anchor),
+.element-container:has(.footer-save-btn-anchor),
+div[data-testid="stElementContainer"]:has(.header-action-btn-anchor),
+div[data-testid="stElementContainer"]:has(.header-save-btn-anchor),
+div[data-testid="stElementContainer"]:has(.header-add-btn-anchor),
+div[data-testid="stElementContainer"]:has(.footer-save-btn-anchor) {
+    height: 0px !important;
+    margin: 0px !important;
+    padding: 0px !important;
+    overflow: hidden !important;
+}
+
+/* Action button in Header (matches prototype #btn-header-save-resume & new application) */
+.st-key-hdr_add_btn .stButton,
+.element-container:has(.header-action-btn-anchor) + .element-container .stButton,
+.element-container:has(.header-save-btn-anchor) + .element-container .stButton,
+.element-container:has(.header-add-btn-anchor) + .element-container .stButton {
+    display: flex !important;
+    justify-content: flex-end !important;
+}
+
+.st-key-hdr_add_btn button,
+.element-container:has(.header-action-btn-anchor) + .element-container button[data-testid="stBaseButton-primary"],
+.element-container:has(.header-action-btn-anchor) + .element-container .stButton > button,
+.element-container:has(.header-save-btn-anchor) + .element-container button[data-testid="stBaseButton-primary"],
+.element-container:has(.header-save-btn-anchor) + .element-container .stButton > button,
+.element-container:has(.header-add-btn-anchor) + .element-container button[data-testid="stBaseButton-primary"],
+.element-container:has(.header-add-btn-anchor) + .element-container .stButton > button {
+    background-color: #0f172a !important; /* bg-slate-900 */
+    border: 1px solid #0f172a !important;
+    border-radius: 8px !important; /* rounded-lg */
+    color: #ffffff !important;
+    font-size: 12px !important; /* text-xs */
+    font-weight: 700 !important; /* font-bold */
+    padding: 8px 14px !important; /* py-2 px-3.5 */
+    min-height: 36px !important;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05) !important;
+    transition: all 0.15s ease !important;
+    cursor: pointer !important;
+}
+
+.st-key-hdr_add_btn button:hover,
+.element-container:has(.header-action-btn-anchor) + .element-container button[data-testid="stBaseButton-primary"]:hover,
+.element-container:has(.header-action-btn-anchor) + .element-container .stButton > button:hover,
+.element-container:has(.header-save-btn-anchor) + .element-container button[data-testid="stBaseButton-primary"]:hover,
+.element-container:has(.header-save-btn-anchor) + .element-container .stButton > button:hover,
+.element-container:has(.header-add-btn-anchor) + .element-container button[data-testid="stBaseButton-primary"]:hover,
+.element-container:has(.header-add-btn-anchor) + .element-container .stButton > button:hover {
+    background-color: #020617 !important; /* hover:bg-slate-950 */
+    border-color: #020617 !important;
+}
+
+.st-key-hdr_add_btn button [data-testid="stMarkdownContainer"] p,
+.element-container:has(.header-action-btn-anchor) + .element-container button [data-testid="stMarkdownContainer"] p,
+.element-container:has(.header-save-btn-anchor) + .element-container button [data-testid="stMarkdownContainer"] p,
+.element-container:has(.header-add-btn-anchor) + .element-container button [data-testid="stMarkdownContainer"] p {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 6px !important; /* gap-1.5 */
+    margin: 0 !important;
+    padding: 0 !important;
+    font-size: 12px !important;
+    font-weight: 700 !important;
+    color: #ffffff !important;
+    line-height: 1 !important;
+    white-space: nowrap !important;
+}
+
+/* Save Icon for Save Master Resume button (Header and Footer) */
+.element-container:has(.header-save-btn-anchor) + .element-container button [data-testid="stMarkdownContainer"] p,
+div[data-testid="stElementContainer"]:has(.header-save-btn-anchor) + div[data-testid="stElementContainer"] button [data-testid="stMarkdownContainer"] p,
+.element-container:has(.footer-save-btn-anchor) + .element-container button [data-testid="stMarkdownContainer"] p,
+div[data-testid="stElementContainer"]:has(.footer-save-btn-anchor) + div[data-testid="stElementContainer"] button [data-testid="stMarkdownContainer"] p {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 6px !important; /* gap-1.5 */
+    margin: 0 !important;
+    padding: 0 !important;
+    font-size: 12px !important;
+    font-weight: 700 !important;
+    color: #ffffff !important;
+    line-height: 1 !important;
+    white-space: nowrap !important;
+}
+
+.element-container:has(.header-save-btn-anchor) + .element-container button [data-testid="stMarkdownContainer"] p::before,
+div[data-testid="stElementContainer"]:has(.header-save-btn-anchor) + div[data-testid="stElementContainer"] button [data-testid="stMarkdownContainer"] p::before,
+.element-container:has(.footer-save-btn-anchor) + .element-container button [data-testid="stMarkdownContainer"] p::before,
+div[data-testid="stElementContainer"]:has(.footer-save-btn-anchor) + div[data-testid="stElementContainer"] button [data-testid="stMarkdownContainer"] p::before {
+    content: "" !important;
+    display: inline-block !important;
+    width: 14px !important; /* w-3.5 */
+    height: 14px !important; /* h-3.5 */
+    min-width: 14px !important;
+    min-height: 14px !important;
+    flex-shrink: 0 !important;
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%23ffffff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' class='lucide lucide-save w-3.5 h-3.5'%3E%3Cpath d='M15.2 3a2 2 0 0 1 1.4.6l3.8 3.8a2 2 0 0 1 .6 1.4V19a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2z'%3E%3C/path%3E%3Cpath d='M17 21v-7a1 1 0 0 0-1-1H8a1 1 0 0 0-1 1v7'%3E%3C/path%3E%3Cpath d='M7 3v4a1 1 0 0 0 1 1h7'%3E%3C/path%3E%3C/svg%3E") no-repeat center / contain !important;
+    -webkit-mask: none !important;
+    mask: none !important;
+}
+
+/* Plus Icon for New Application button */
+.st-key-hdr_add_btn button [data-testid="stMarkdownContainer"] p::before,
+.element-container:has(.header-add-btn-anchor) + .element-container button [data-testid="stMarkdownContainer"] p::before {
+    content: "" !important;
+    display: inline-block !important;
+    width: 14px !important; /* w-3.5 */
+    height: 14px !important; /* h-3.5 */
+    min-width: 14px !important;
+    min-height: 14px !important;
+    flex-shrink: 0 !important;
+    background-color: #ffffff !important;
+    -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12h14'/%3E%3Cpath d='M12 5v14'/%3E%3C/svg%3E") no-repeat center / contain !important;
+    mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12h14'/%3E%3Cpath d='M12 5v14'/%3E%3C/svg%3E") no-repeat center / contain !important;
+}

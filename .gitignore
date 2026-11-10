@@ -1,0 +1,68 @@
+# Environments & Virtual Envs
+.venv/
+venv/
+env/
+ENV/
+env.bak/
+venv.bak/
+
+# Byte-compiled / optimized files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Secrets & Environment variables
+.env
+.env.*
+*.env
+*.pem
+*.key
+*.cert
+*.credentials
+.streamlit/secrets.toml
+secrets.toml
+
+# Operating System files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# IDE & Editor files
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# Agent & AI tool configurations
+.agents/
+.claude/
+
+# Local user data & database (Never committed to public repository)
+00_Data/*.db
+00_Data/*.csv
+00_Data/*.sql
+00_Data/jobs.db
+00_Data/master_profile.json
+00_Data/Master_resume.md
+00_Data/Master_Resume.md
+00_Data/Job_Tracker.md
+
+# Backup, input & generated output directories
+01_Input/
+02_Output/
+02_Output_Backup/
+03_Archive/
+Archive/
+archive/
+LM_Logs/
+lm_logs/
+
+# Logs & Temporary files
+*.log
+*.tmp
+*.swp
+*~

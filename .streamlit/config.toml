@@ -1,0 +1,15 @@
+[server]
+# Bind strictly to local IPv4 loopback (prevents LAN exposure and IPv6 ::1 WebKit hangs)
+address = "127.0.0.1"
+# Avoid WebKit/Safari permessage-deflate window-bits bug on localhost
+enableWebsocketCompression = false
+# Keep security protections enabled
+enableCORS = true
+enableXsrfProtection = true
+
+[browser]
+gatherUsageStats = false
+serverAddress = "127.0.0.1"
+
+[client]
+toolbarMode = "off"
