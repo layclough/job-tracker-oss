@@ -12,4 +12,9 @@ gatherUsageStats = false
 serverAddress = "127.0.0.1"
 
 [client]
-toolbarMode = "off"
+toolbarMode = "minimal"
+
+[theme]
+# The stylesheet in assets/global_styles.css is a light design; pin the base
+# theme so widgets stay readable when the OS is in dark mode.
+base = "light"

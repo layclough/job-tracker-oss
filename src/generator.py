@@ -4,7 +4,7 @@ import re
 from docx import Document
 from docx.enum.text import WD_ALIGN_PARAGRAPH
 from docx.shared import Inches, Pt, RGBColor
-from src.llm_config import get_llm_client_and_model, MAX_JD_CHARS
+from src.llm_config import stream_chat, MAX_JD_CHARS
 
 
 def resolve_master_resume_path(custom_path: Path | str | None = None) -> Path:
@@ -585,17 +585,12 @@ Role: {title}
     if progress_callback:
         progress_callback("thinking", f"Planning achievement selection for {company} ({title})...", 20)
 
-    client, model_name = get_llm_client_and_model(timeout=180.0)
-
-    stream = client.chat.completions.create(
-        model=model_name,
-        messages=[
-            {"role": "system", "content": system_prompt},
-            {"role": "user", "content": prompt}
-        ],
+    stream = stream_chat(
+        system=system_prompt,
+        user=prompt,
         temperature=0.1,
         max_tokens=3500,
-        stream=True
+        timeout=180.0,
     )
 
     content_chunks = []
@@ -605,25 +600,22 @@ Role: {title}
     reasoning_chunks = 0
     last_thinking_pct = 20
 
-    for chunk in stream:
-        if not chunk.choices:
-            continue
-        delta = chunk.choices[0].delta
-        r_piece = getattr(delta, "reasoning_content", None) or ""
-        if r_piece and current_stage == "thinking" and progress_callback:
-            reasoning_chunks += 1
-            if reasoning_chunks % 25 == 0:
-                new_pct = min(35, 20 + (reasoning_chunks // 25))
-                if new_pct > last_thinking_pct:
-                    last_thinking_pct = new_pct
-                    progress_callback(
-                        "thinking",
-                        f"Planning achievement selection for {company} ({title})...",
-                        new_pct
-                    )
+    for kind, text in stream:
+        if kind == "reasoning":
+            if current_stage == "thinking" and progress_callback:
+                reasoning_chunks += 1
+                if reasoning_chunks % 25 == 0:
+                    new_pct = min(35, 20 + (reasoning_chunks // 25))
+                    if new_pct > last_thinking_pct:
+                        last_thinking_pct = new_pct
+                        progress_callback(
+                            "thinking",
+                            f"Planning achievement selection for {company} ({title})...",
+                            new_pct
+                        )
 
-        piece = getattr(delta, "content", None) or ""
-        if piece:
+        elif kind == "content":
+            piece = text
             content_chunks.append(piece)
             if progress_callback:
                 joined = "".join(content_chunks)
