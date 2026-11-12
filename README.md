@@ -1,7 +1,10 @@
-# 💼 JobHunt.AI — Local-First Job Application Tracker & AI Resume Tailor
+# JobHunt.AI: Job Matching and Resume Tailoring, Running on Your Own Machine
 
-A private, local-first application tracker and AI-powered resume tailor built with **Streamlit** and **SQLite**. Works out of the box with local LLMs (**LM Studio**, **Ollama**) or external AI providers (**Google Gemini**, **OpenAI**, **Claude** via the Anthropic API or OpenRouter).
+Paste a job description or URL, and JobHunt.AI breaks it into required and preferred requirements, checks each one against your resume, and shows you why: a full match, a partial match with a reason, or missing. Then it builds a tailored resume and tracks the application through to interview.
 
+**How the scoring works:** the LLM only classifies evidence. The score is calculated in code (85% required, 15% preferred, half credit for transferable skills), so the same resume and job give the same result, and every point traces back to a specific requirement.
+
+**Private by default:** it runs fully offline on local models through LM Studio or Ollama. You can switch to Gemini, OpenAI, or Claude if you prefer. Built with Python, Streamlit, and SQLite.
 ---
 
 ## ✨ Key Features
