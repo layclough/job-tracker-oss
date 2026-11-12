@@ -1,6 +1,6 @@
 # 💼 JobHunt.AI — Local-First Job Application Tracker & AI Resume Tailor
 
-A private, local-first application tracker and AI-powered resume tailor built with **Streamlit** and **SQLite**. Works out of the box with local LLMs (**LM Studio**, **Ollama**) or external AI providers (**Google Gemini**, **OpenAI**, **Claude**).
+A private, local-first application tracker and AI-powered resume tailor built with **Streamlit** and **SQLite**. Works out of the box with local LLMs (**LM Studio**, **Ollama**) or external AI providers (**Google Gemini**, **OpenAI**, **Claude** via the Anthropic API or OpenRouter).
 
 ---
 
@@ -19,12 +19,13 @@ A private, local-first application tracker and AI-powered resume tailor built wi
 
 ## 🛠️ Tech Stack & Requirements
 
+- **Python**: 3.13
 - **Frontend & App Framework**: [Streamlit](https://streamlit.io/)
 - **Database**: SQLite (auto-initialized on first run)
 - **Document Generation**: `python-docx`
 - **Supported AI Models**:
   - **Local (Default)**: LM Studio (`http://127.0.0.1:1234/v1`), Ollama (`http://127.0.0.1:11434/v1`)
-  - **Cloud APIs**: Google Gemini API (`gemini-3.8-flash`), OpenAI (`gpt-5.4`), OpenRouter / Anthropic Claude
+  - **Cloud APIs**: Google Gemini API (`gemini-3.8-flash`), OpenAI (`gpt-5.4`), Anthropic Claude API (`claude-haiku-5-5`), OpenRouter (Claude and others)
 
 ---
 
@@ -37,11 +38,17 @@ cd job-tracker-oss
 ```
 
 ### 2. Set Up a Virtual Environment & Install Dependencies
+
+Use **Python 3.13**. The pinned dependencies install as prebuilt wheels on 3.13; on Python 3.15 `pyarrow` has no wheel and its source build fails.
+
 ```bash
-python3 -m venv .venv
+python3.13 -m venv .venv
 source .venv/bin/activate
 pip install -r requirements.txt
+playwright install chromium
 ```
+
+`playwright install chromium` downloads the headless browser used to fetch job descriptions from URLs.
 
 ### 3. Launch the Application
 ```bash
@@ -67,6 +74,9 @@ Click the **Settings** button in the sidebar to configure your preferred AI prov
 4. **OpenAI API**:
    - Select **OpenAI API**, enter your API key, and test connectivity.
    - Recommended model: `gpt-5.4`.
+5. **Anthropic Claude API**:
+   - Select **Anthropic Claude API**, enter your API key (or export `ANTHROPIC_API_KEY` before launching), and test connectivity.
+   - Recommended model: `claude-haiku-5-5`.
 
 ---
 

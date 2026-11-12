@@ -1,5 +1,8 @@
 import os
 from pathlib import Path
+from typing import Iterator
+
+import anthropic
 from openai import OpenAI
 
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -7,6 +10,10 @@ ENV_PATH = BASE_DIR / ".env"
 
 # Maximum characters of JD text sent to any LLM to prevent runaway token costs
 MAX_JD_CHARS = 30000
+
+# Claude models think before answering and thinking counts toward max_tokens,
+# so the Anthropic path uses a fixed generous ceiling instead of the caller's value.
+ANTHROPIC_MAX_TOKENS = 16000
 
 PROVIDERS = {
     "lm_studio": {
@@ -52,6 +59,17 @@ PROVIDERS = {
         "default_key": "",
         "is_local": False,
         "model_suggestions": ["gpt-5.4", "gpt-5.4-nano", "gpt-4.1", "o3"],
+    },
+    "anthropic": {
+        "label": "Anthropic Claude API",
+        "short_label": "Anthropic Claude",
+        "default_base_url": "https://api.anthropic.com",
+        "default_model": "claude-haiku-5-5",
+        "requires_key": True,
+        "env_key_name": "ANTHROPIC_API_KEY",
+        "default_key": "",
+        "is_local": False,
+        "model_suggestions": ["claude-haiku-5-5", "claude-sonnet-5-5", "claude-opus-5-5"],
     },
     "custom": {
         "label": "Custom (OpenAI-Compatible)",
@@ -236,13 +254,22 @@ def mask_api_key(key: str) -> str:
     return f"{k[:4]}{'•' * 8}{k[-4:]}"
 
 
-def get_llm_client_and_model(timeout: float = 120.0) -> tuple[OpenAI, str]:
-    """Returns an initialized OpenAI-compatible client and target model name based on active settings."""
-    cfg = load_llm_settings()
+def _require_api_key(cfg: dict) -> None:
+    """Raises ValueError when the active provider needs an API key and none is configured."""
     if cfg["requires_key"] and not cfg["api_key"]:
         raise ValueError(
             f"Missing API Key for {cfg['provider_label']}. Please click 'Settings' in the sidebar to configure your key."
         )
+
+
+def get_llm_client_and_model(timeout: float = 120.0) -> tuple[OpenAI, str]:
+    """Returns an initialized OpenAI-compatible client and target model name based on active settings."""
+    cfg = load_llm_settings()
+    if cfg["provider"] == "anthropic":
+        raise ValueError(
+            "The Anthropic provider does not use an OpenAI-compatible client. Use complete_chat or stream_chat."
+        )
+    _require_api_key(cfg)
 
     client = OpenAI(
         base_url=cfg["base_url"],
@@ -250,6 +277,93 @@ def get_llm_client_and_model(timeout: float = 120.0) -> tuple[OpenAI, str]:
         timeout=timeout,
     )
     return client, cfg["model"]
+
+
+def _anthropic_client(cfg: dict, timeout: float) -> anthropic.Anthropic:
+    return anthropic.Anthropic(api_key=cfg["api_key"], base_url=cfg["base_url"], timeout=timeout)
+
+
+def _text_from_blocks(content) -> str:
+    """Concatenates the text blocks of an Anthropic response, ignoring thinking blocks."""
+    return "".join(block.text for block in content if block.type == "text")
+
+
+def complete_chat(system: str, user: str, *, max_tokens: int, temperature: float, timeout: float = 120.0) -> str:
+    """Runs one non-streaming completion on the active provider and returns the reply text."""
+    cfg = load_llm_settings()
+    _require_api_key(cfg)
+
+    if cfg["provider"] == "anthropic":
+        client = _anthropic_client(cfg, timeout)
+        response = client.messages.create(
+            model=cfg["model"],
+            max_tokens=ANTHROPIC_MAX_TOKENS,
+            system=system,
+            messages=[{"role": "user", "content": user}],
+        )
+        if response.stop_reason == "refusal":
+            raise RuntimeError("The model declined this request.")
+        return _text_from_blocks(response.content)
+
+    client, model_name = get_llm_client_and_model(timeout=timeout)
+    response = client.chat.completions.create(
+        model=model_name,
+        messages=[
+            {"role": "system", "content": system},
+            {"role": "user", "content": user},
+        ],
+        temperature=temperature,
+        max_tokens=max_tokens,
+    )
+    return response.choices[0].message.content
+
+
+def stream_chat(
+    system: str, user: str, *, max_tokens: int, temperature: float, timeout: float = 120.0
+) -> Iterator[tuple[str, str]]:
+    """Streams a completion on the active provider, yielding ("reasoning" | "content", text) pieces."""
+    cfg = load_llm_settings()
+    _require_api_key(cfg)
+
+    if cfg["provider"] == "anthropic":
+        client = _anthropic_client(cfg, timeout)
+        with client.messages.stream(
+            model=cfg["model"],
+            max_tokens=ANTHROPIC_MAX_TOKENS,
+            system=system,
+            messages=[{"role": "user", "content": user}],
+        ) as stream:
+            for event in stream:
+                if event.type == "content_block_delta":
+                    if event.delta.type == "thinking_delta" and event.delta.thinking:
+                        yield ("reasoning", event.delta.thinking)
+                    elif event.delta.type == "text_delta" and event.delta.text:
+                        yield ("content", event.delta.text)
+            if stream.get_final_message().stop_reason == "refusal":
+                raise RuntimeError("The model declined this request.")
+        return
+
+    client, model_name = get_llm_client_and_model(timeout=timeout)
+    stream = client.chat.completions.create(
+        model=model_name,
+        messages=[
+            {"role": "system", "content": system},
+            {"role": "user", "content": user},
+        ],
+        temperature=temperature,
+        max_tokens=max_tokens,
+        stream=True,
+    )
+    for chunk in stream:
+        if not chunk.choices:
+            continue
+        delta = chunk.choices[0].delta
+        r_piece = getattr(delta, "reasoning_content", None)
+        if r_piece:
+            yield ("reasoning", r_piece)
+        piece = getattr(delta, "content", None)
+        if piece:
+            yield ("content", piece)
 
 
 def test_llm_connection(provider_id: str, model: str, base_url: str, api_key_override: str = "") -> tuple[bool, str]:
@@ -271,6 +385,20 @@ def test_llm_connection(provider_id: str, model: str, base_url: str, api_key_ove
         return False, f"Please enter a valid API key for {preset['label']}."
 
     try:
+        if provider_id == "anthropic":
+            a_client = anthropic.Anthropic(
+                api_key=effective_key,
+                base_url=base_url.strip() or preset["default_base_url"],
+                timeout=20.0,
+            )
+            a_resp = a_client.messages.create(
+                model=model.strip() or preset["default_model"],
+                max_tokens=1024,
+                messages=[{"role": "user", "content": "Reply with OK"}],
+            )
+            a_reply = _text_from_blocks(a_resp.content).strip()
+            return True, f"Connected to {model} ({a_reply or 'OK'})"
+
         client = OpenAI(
             base_url=base_url.strip() or preset["default_base_url"],
             api_key=effective_key or "not-needed",

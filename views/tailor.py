@@ -396,9 +396,14 @@ def tailor_view(db_path: Path, master_resume_path: Path, input_dir: Path, output
         """, unsafe_allow_html=True)
     with header_right:
         with st.container(horizontal_alignment="right", key="hdr_right_tailor"):
-            if st.button("Go to Tracker", key="btn_goto_tracker", width="content"):
-                st.session_state["main_nav_radio"] = "Application Tracker"
-                st.rerun()
+            # A widget's session state can only be set before the widget is built in a run,
+            # so the navigation change happens in a callback, which runs ahead of the script.
+            st.button(
+                "Go to Tracker",
+                key="btn_goto_tracker",
+                width="content",
+                on_click=lambda: st.session_state.update(main_nav_radio="Application Tracker"),
+            )
 
     st.markdown('<div class="main-header-border"></div>', unsafe_allow_html=True)
 

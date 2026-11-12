@@ -246,8 +246,10 @@ def compile_profile_to_markdown(profile: dict) -> str:
                 lines.append(f"- {b_str}")
         lines.append("")
         
-    lines.append("## AI Projects (Built Solo)\n")
-    for proj in profile.get("side_projects", []):
+    side_projects = profile.get("side_projects", [])
+    if side_projects:
+        lines.append("## AI Projects (Built Solo)\n")
+    for proj in side_projects:
         p_title = proj.get("title", "").strip()
         lines.append(f"### {p_title}\n")
         for b in proj.get("bullets", []):
@@ -606,9 +608,9 @@ def master_view(master_resume_path: Path):
                     })
                     st.rerun()
             with p_btn_col2:
-                if st.button("Remove Project", key="btn_remove_project", disabled=len(side_projects) <= 1):
+                if st.button("Remove Project", key="btn_remove_project", disabled=not side_projects):
                     sync_from_widgets()
-                    if len(profile["side_projects"]) > 1:
+                    if profile["side_projects"]:
                         profile["side_projects"].pop()
                     st.rerun()
 

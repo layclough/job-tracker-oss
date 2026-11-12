@@ -2,7 +2,7 @@ import json
 from pathlib import Path
 import re
 from src.adapters import fetch_job_content
-from src.llm_config import get_llm_client_and_model, MAX_JD_CHARS
+from src.llm_config import complete_chat, MAX_JD_CHARS
 
 
 def resolve_master_resume_path(custom_path: Path | str | None = None) -> Path:
@@ -99,20 +99,16 @@ Return ONLY valid JSON matching this schema:
     "preferred_skills": ["Domain Skill 1", "Domain Skill 2"]
 }"""
 
-  client, model_name = get_llm_client_and_model()
   safe_jd_text = jd_text[:MAX_JD_CHARS]
 
-  response = client.chat.completions.create(
-      model=model_name,
-      messages=[
-          {"role": "system", "content": prompt},
-          {"role": "user", "content": safe_jd_text},
-      ],
+  response_text = complete_chat(
+      system=prompt,
+      user=safe_jd_text,
       temperature=0.1,
       max_tokens=1500,
   )
 
-  parsed = extract_json_from_response(response.choices[0].message.content)
+  parsed = extract_json_from_response(response_text)
   if "skills" not in parsed:
     parsed["skills"] = parsed.get("core_requirements", []) + parsed.get(
         "preferred_skills", []
@@ -215,24 +211,16 @@ CORE REQUIREMENTS (Essential Qualifications - drives 85% of overall score):
 PREFERRED / DOMAIN SKILLS (Nice to Have / Bonus - drives 15% of overall score):
 {json.dumps(preferred_skills, indent=2)}"""
 
-  client, model_name = get_llm_client_and_model()
-
-  response = client.chat.completions.create(
-      model=model_name,
-      messages=[
-          {
-              "role": "system",
-              "content": (
-                  "You are a rigorous executive talent evaluator. Keep internal thinking ultra-concise (1 short line per item, no rule repetition, no second-guessing). Output valid JSON only."
-              ),
-          },
-          {"role": "user", "content": prompt},
-      ],
+  response_text = complete_chat(
+      system=(
+          "You are a rigorous executive talent evaluator. Keep internal thinking ultra-concise (1 short line per item, no rule repetition, no second-guessing). Output valid JSON only."
+      ),
+      user=prompt,
       temperature=0.0,
       max_tokens=2000,
   )
 
-  parsed = extract_json_from_response(response.choices[0].message.content)
+  parsed = extract_json_from_response(response_text)
 
   matched_core = [_normalize_string_item(s) for s in parsed.get("matched_core", []) if s]
   partial_core = [_normalize_partial_item(p) for p in parsed.get("partial_core", []) if p]
